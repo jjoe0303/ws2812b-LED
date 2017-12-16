@@ -3992,6 +3992,35 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
+# 8 "C:\Program Files (x86)\Microchip\xc8\v1.44\include\time.h"
+typedef long time_t;
+struct tm {
+int tm_sec;
+int tm_min;
+int tm_hour;
+int tm_mday;
+int tm_mon;
+int tm_year;
+int tm_wday;
+int tm_yday;
+int tm_isdst;
+};
+
+# 25
+extern int time_zone;
+
+# 30
+extern time_t time(time_t *);
+extern int stime(time_t *);
+
+# 47
+extern char * asctime(const struct tm *) ;
+extern char * ctime(const time_t *) ;
+extern struct tm * gmtime(const time_t *) ;
+extern struct tm * localtime(const time_t *) ;
+extern size_t strftime(char *, size_t, const char *, const struct tm *) ;
+extern time_t mktime(struct tm *);
+
 # 5 "ws2812.h"
 typedef struct {
 unsigned char r;
@@ -4003,7 +4032,7 @@ unsigned char g;
 
 void ws2812_send();
 
-# 23 "hehe.c"
+# 24 "hehe.c"
 unsigned long int bitflip(unsigned char b);
 long int temp;
 unsigned char tmp1;
@@ -4016,25 +4045,19 @@ int lednum;
 long int lednum_24;
 int isFlow=0;
 int ledmax;
+int effect;
 
 void led_send(int front) {
+tmp1=bitflip(led.g);
+tmp2=bitflip(led.r);
+tmp3=bitflip(led.b);
 long int front_24 = front * 24;
 int buf = 24;
 long int val = (long int)tmp1;
 long int back_24 = (ledlength - front ) * 24;
 
-for(long int i = 0; i < front_24; ++i){
-PORTDbits.RD0 = 1;
-PORTDbits.RD0 = 0;
-__nop();
-__nop();
-__nop();
-__nop();
-__nop();
-__nop();
-}
-
-for(long int i = 0; i < lednum_24 ; i++ ){
+# 58
+for(long int i = 0; i < ledmax*24 ; i++ ){
 
 if(buf== 0){
 buf = 24;
@@ -4054,8 +4077,6 @@ __nop();
 __nop();
 __nop();
 __nop();
-__nop();
-__nop();
 PORTDbits.RD0 = 0;
 
 } else {
@@ -4065,23 +4086,12 @@ __nop();
 __nop();
 __nop();
 __nop();
-__nop();
-__nop();
 }
 val >>= (unsigned char)1;
 buf--;
 }
 
-for(long int i = 0; i < back_24; ++i){
-PORTDbits.RD0 = 1;
-PORTDbits.RD0 = 0;
-__nop();
-__nop();
-__nop();
-__nop();
-__nop();
-__nop();
-}
+# 102
 }
 
 
@@ -4098,16 +4108,18 @@ OSCCONbits.IRCF1 = 1;
 OSCCONbits.IRCF0 = 1;
 OSCTUNEbits.PLLEN=1;
 
+
 ledlength=300;
 lednum=1;
 lednum_24= lednum*24;
-ledmax=300;
+ledmax=400;
 
-led.r = 1;
+led.r = 100;
 led.g = 1;
-led.b = 100;
+led.b = 1;
 
 isFlow=0;
+effect=0;
 
 TRISDbits.RD0 = 0;
 }
@@ -4123,27 +4135,80 @@ int front = 0;
 while(1) {
 asm(" clrwdt");
 GIE = 0; while (GIE);
-if(front > ledlength)
+if(effect == 0)
 {
-front=0;
-isFlow=0;
-lednum=1;
-lednum_24= lednum*24;
-}
+while( led.r < 130 ){
+led.r += 5;
 led_send(front);
-if(isFlow){
-front++;
 }
-if(lednum!=ledmax)
-{
-lednum++;
-lednum_24= lednum*24;
+effect++;
+led.r = 130;
 }
-if(lednum==ledmax)
+else if(effect == 1)
 {
-isFlow=1;
+while( led.g < 130 ){
+led.g += 5;
+led_send(front);
+}
+effect++;
+led.g = 130;
+}
+else if(effect==2)
+{
+while( led.r > 0 ){
+led.r -= 5;
+led_send(front);
+}
+effect++;
+led.r = 0;
+}
+else if(effect==3)
+{
+while( led.b < 130 ){
+led.b += 5;
+led_send(front);
+}
+effect++;
+led.b = 130;
+}
+else if(effect==4)
+{
+while( led.r < 130 ){
+led.r += 5;
+led_send(front);
+}
+effect++;
+led.r = 130;
+}
+else if(effect==5)
+{
+while(led.g > 0 ){
+led.g -= 5;
+led_send(front);
+}
+effect++;
+led.g = 0;
+}
+else if(effect==6)
+{
+while( led.r > 0 ){
+led.r -= 5;
+led_send(front);
+}
+effect++;
+led.r = 0;
+}
+else if(effect==7)
+{
+while( led.b > 0 ){
+led.b -= 5;
+led_send(front);
+}
+effect=0;
+led.b = 0;
 }
 
+# 242
 int k = 1 , l = 5;
 while( k > 0 ) {
 l = 5;
@@ -4152,7 +4217,6 @@ l--;
 }
 k--;
 }
-
 GIE = 1; while (!GIE);
 }
 }

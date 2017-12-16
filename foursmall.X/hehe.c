@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdio.h>
+#include <time.h>
 #include "ws2812.h"
 #include <pic18f4520.h>
 
@@ -32,14 +33,18 @@ int lednum;
 long int lednum_24;
 int isFlow=0;
 int ledmax;
+int effect;
 
 void led_send(int front) {
+    tmp1=bitflip(led.g);
+    tmp2=bitflip(led.r);
+    tmp3=bitflip(led.b);
     long int front_24 = front * 24;
     int buf = 24;
     long int val = (long int)tmp1;
     long int back_24 = (ledlength - front ) * 24;
     
-    for(long int i = 0; i < front_24; ++i){
+/*    for(long int i = 0; i < front_24; ++i){
         PIN = 1;
         PIN = 0;
         NOP();
@@ -48,9 +53,9 @@ void led_send(int front) {
         NOP();
         NOP();
         NOP();
-    }
+    }*/
     
-    for(long int i = 0; i < lednum_24 ; i++ ){
+    for(long int i = 0; i < ledmax*24 ; i++ ){
         //if(lednum!=20) lednum++;
         if(buf== 0){
             buf = 24;
@@ -69,9 +74,7 @@ void led_send(int front) {
             NOP();
             NOP();
             NOP();
-             NOP();
-        NOP();
-        NOP();
+            NOP();
             PIN = 0;
            
         } else {
@@ -81,14 +84,12 @@ void led_send(int front) {
             NOP();
             NOP();
             NOP();
-        NOP();
-        NOP();
         }    
         val >>= (unsigned char)1;
         buf--;
     }
    
-    for(long int i = 0; i < back_24; ++i){
+  /*  for(long int i = 0; i < back_24; ++i){
         PIN = 1;
         PIN = 0;
         NOP();
@@ -97,7 +98,7 @@ void led_send(int front) {
        NOP();
         NOP();
         NOP();
-    }
+    }*/
 }
 
 // reverse the bits in a char
@@ -114,16 +115,18 @@ void init(){
     OSCCONbits.IRCF0 = 1;
     OSCTUNEbits.PLLEN=1;
     
+    //srand(time(NULL));
     ledlength=300;
     lednum=1;
     lednum_24= lednum*24;
-    ledmax=300;
+    ledmax=400;
     
-    led.r = 1;
+    led.r = 100;
     led.g = 1;
-    led.b = 100;
+    led.b = 1;
 
     isFlow=0;
+    effect=0;
     
     TRISDbits.RD0 = 0;
 }
@@ -135,30 +138,106 @@ void main() {
     tmp3=bitflip(led.b);
     //temp = (bitflip(led.b) << 16) + (bitflip(led.r) << 8) + (bitflip(led.g));
     int front = 0;
-
+    
     while(1) {
         CLRWDT();
         GIE = 0; while (GIE);
-        if(front > ledlength)
-        {    
-             front=0;
-             isFlow=0;
-             lednum=1;
-             lednum_24= lednum*24;
-        }
-         led_send(front);
-         if(isFlow){
-             front++;
-         }
-         if(lednum!=ledmax) 
-         {
-             lednum++;
-             lednum_24= lednum*24;
-         }
-        if(lednum==ledmax) 
+        if(effect == 0)
         {
-            isFlow=1;
+            while( led.r < 130 ){ //001
+                led.r += 5;
+                led_send(front);
+            }
+            effect++;
+            led.r = 130;
         }
+        else if(effect == 1)
+        {
+            while( led.g < 130 ){ //011
+                led.g += 5;
+                led_send(front);
+            }
+            effect++;
+            led.g = 130;
+        }    
+        else if(effect==2)
+        {
+            while( led.r > 0 ){ //010
+                led.r -= 5;
+                led_send(front);
+            }
+            effect++;
+            led.r = 0;
+        }
+        else if(effect==3)
+        {
+            while( led.b < 130 ){ //110
+                led.b += 5;
+                led_send(front);
+            }
+            effect++;
+            led.b = 130;
+        }
+        else if(effect==4)
+        {
+            while( led.r < 130 ){ //111
+                led.r += 5;
+                led_send(front);
+            }
+            effect++;
+            led.r = 130;
+        }
+        else if(effect==5)
+        {
+            while(led.g > 0 ){ //101
+                led.g -= 5;
+                led_send(front);
+            }
+            effect++;
+            led.g = 0;
+        }
+        else if(effect==6)
+        {
+            while( led.r > 0 ){ //100
+                led.r -= 5;
+                led_send(front);
+            }
+            effect++;
+            led.r = 0;
+        }
+        else if(effect==7)
+        {
+            while( led.b > 0 ){ //000
+                led.b -= 5;
+                led_send(front);
+            }
+            effect=0;
+            led.b = 0;
+        }
+//        tmp1=bitflip(led.g);
+//    tmp2=bitflip(led.r);
+//    tmp3=bitflip(led.b);
+//        GIE = 0; while (GIE);
+//        if(front > ledlength)
+//        {    
+//             front=0;
+//             isFlow=0;
+//             lednum=1;
+//             lednum_24= lednum*24;
+//        }
+//         //led_send(front);
+//         if(isFlow){
+//             front++;
+//         }
+//         if(lednum!=ledmax) 
+//         {
+//             lednum++;
+//             lednum_24= lednum*24;
+//         }
+//        if(lednum==ledmax) 
+//        {
+//            isFlow=1;
+//        }
         //delay part
         int k = 1 , l = 5;
         while( k > 0 ) {
@@ -168,7 +247,6 @@ void main() {
             }
             k--;
         }
-       
         GIE = 1; while (!GIE);
     }
 }

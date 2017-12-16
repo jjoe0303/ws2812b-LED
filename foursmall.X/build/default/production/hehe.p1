@@ -1,7 +1,7 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "5 ws2812.h
-[s S281 `uc 1 `uc 1 `uc 1 ]
-[n S281 . r b g ]
+[s S282 `uc 1 `uc 1 `uc 1 ]
+[n S282 . r b g ]
 "636 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic18f4520.h
 [s S24 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S24 . RD0 RD1 RD2 RD3 RD4 RD5 RD6 RD7 ]
@@ -44,7 +44,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S84 . . . ]
 "2547
 [v _OSCTUNEbits `VS84 ~T0 @X0 0 e@3995 ]
-"2152
+"61 C:\Program Files (x86)\Microchip\xc8\v1.44\include\stdlib.h
+[v _srand `(v ~T0 @X0 0 ef1`ui ]
+"30 C:\Program Files (x86)\Microchip\xc8\v1.44\include\time.h
+[v _time `(l ~T0 @X0 0 ef1`*l ]
+"2152 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic18f4520.h
 [s S73 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S73 . TRISD0 TRISD1 TRISD2 TRISD3 TRISD4 TRISD5 TRISD6 TRISD7 ]
 "2162
@@ -56,7 +60,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "2173
 [v _TRISDbits `VS72 ~T0 @X0 0 e@3989 ]
 [p mainexit ]
-"7275
+"60 C:\Program Files (x86)\Microchip\xc8\v1.44\include\stdlib.h
+[v _rand `(i ~T0 @X0 0 ef ]
+"7275 C:\Program Files (x86)\Microchip\xc8\v1.44\include\pic18f4520.h
 [v _GIE `Vb ~T0 @X0 0 e@32663 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
@@ -2956,220 +2962,181 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdio.h: 190: extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
 [; ;stdio.h: 194: extern int sprintf(char *, const char *, ...);
 [; ;stdio.h: 195: extern int printf(const char *, ...);
+[; ;time.h: 8: typedef long time_t;
+[; ;time.h: 9: struct tm {
+[; ;time.h: 10: int tm_sec;
+[; ;time.h: 11: int tm_min;
+[; ;time.h: 12: int tm_hour;
+[; ;time.h: 13: int tm_mday;
+[; ;time.h: 14: int tm_mon;
+[; ;time.h: 15: int tm_year;
+[; ;time.h: 16: int tm_wday;
+[; ;time.h: 17: int tm_yday;
+[; ;time.h: 18: int tm_isdst;
+[; ;time.h: 19: };
+[; ;time.h: 25: extern int time_zone;
+[; ;time.h: 30: extern time_t time(time_t *);
+[; ;time.h: 31: extern int stime(time_t *);
+[; ;time.h: 47: extern char * asctime(const struct tm *) ;
+[; ;time.h: 48: extern char * ctime(const time_t *) ;
+[; ;time.h: 49: extern struct tm * gmtime(const time_t *) ;
+[; ;time.h: 50: extern struct tm * localtime(const time_t *) ;
+[; ;time.h: 51: extern size_t strftime(char *, size_t, const char *, const struct tm *) ;
+[; ;time.h: 52: extern time_t mktime(struct tm *);
 [; ;ws2812.h: 5: typedef struct {
 [; ;ws2812.h: 6: unsigned char r;
 [; ;ws2812.h: 7: unsigned char b;
 [; ;ws2812.h: 8: unsigned char g;
 [; ;ws2812.h: 10: } ws2812_ptr;
 [; ;ws2812.h: 13: void ws2812_send();
-[; ;hehe.c: 23: unsigned long int bitflip(unsigned char b);
-"24
-[v _temp `l ~T0 @X0 1 e ]
-[; ;hehe.c: 24: long int temp;
+[; ;hehe.c: 24: unsigned long int bitflip(unsigned char b);
 "25
-[v _tmp1 `uc ~T0 @X0 1 e ]
-[; ;hehe.c: 25: unsigned char tmp1;
+[v _temp `l ~T0 @X0 1 e ]
+[; ;hehe.c: 25: long int temp;
 "26
-[v _tmp2 `uc ~T0 @X0 1 e ]
-[; ;hehe.c: 26: unsigned char tmp2;
+[v _tmp1 `uc ~T0 @X0 1 e ]
+[; ;hehe.c: 26: unsigned char tmp1;
 "27
-[v _tmp3 `uc ~T0 @X0 1 e ]
-[; ;hehe.c: 27: unsigned char tmp3;
+[v _tmp2 `uc ~T0 @X0 1 e ]
+[; ;hehe.c: 27: unsigned char tmp2;
 "28
-[v _led `S281 ~T0 @X0 1 e ]
-[; ;hehe.c: 28: ws2812_ptr led;
+[v _tmp3 `uc ~T0 @X0 1 e ]
+[; ;hehe.c: 28: unsigned char tmp3;
 "29
-[v _ledlength `l ~T0 @X0 1 e ]
-[; ;hehe.c: 29: long int ledlength;
+[v _led `S282 ~T0 @X0 1 e ]
+[; ;hehe.c: 29: ws2812_ptr led;
 "30
-[v _flag `i ~T0 @X0 1 e ]
-[; ;hehe.c: 30: int flag;
+[v _ledlength `l ~T0 @X0 1 e ]
+[; ;hehe.c: 30: long int ledlength;
 "31
-[v _lednum `i ~T0 @X0 1 e ]
-[; ;hehe.c: 31: int lednum;
+[v _flag `i ~T0 @X0 1 e ]
+[; ;hehe.c: 31: int flag;
 "32
-[v _lednum_24 `l ~T0 @X0 1 e ]
-[; ;hehe.c: 32: long int lednum_24;
+[v _lednum `i ~T0 @X0 1 e ]
+[; ;hehe.c: 32: int lednum;
 "33
+[v _lednum_24 `l ~T0 @X0 1 e ]
+[; ;hehe.c: 33: long int lednum_24;
+"34
 [v _isFlow `i ~T0 @X0 1 e ]
 [i _isFlow
 -> 0 `i
 ]
-[; ;hehe.c: 33: int isFlow=0;
-"34
+[; ;hehe.c: 34: int isFlow=0;
+"35
 [v _ledmax `i ~T0 @X0 1 e ]
-[; ;hehe.c: 34: int ledmax;
-"36
+[; ;hehe.c: 35: int ledmax;
+"37
 [v _led_send `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;hehe.c: 36: void led_send(int front) {
+[; ;hehe.c: 37: void led_send(int front) {
 [e :U _led_send ]
 [v _front `i ~T0 @X0 1 r1 ]
 [f ]
-"37
-[v _front_24 `l ~T0 @X0 1 a ]
-[; ;hehe.c: 37: long int front_24 = front * 24;
-[e = _front_24 -> * _front -> 24 `i `l ]
 "38
-[v _buf `i ~T0 @X0 1 a ]
-[; ;hehe.c: 38: int buf = 24;
-[e = _buf -> 24 `i ]
+[v _front_24 `l ~T0 @X0 1 a ]
+[; ;hehe.c: 38: long int front_24 = front * 24;
+[e = _front_24 -> * _front -> 24 `i `l ]
 "39
-[v _val `l ~T0 @X0 1 a ]
-[; ;hehe.c: 39: long int val = (long int)tmp1;
-[e = _val -> _tmp1 `l ]
+[v _buf `i ~T0 @X0 1 a ]
+[; ;hehe.c: 39: int buf = 24;
+[e = _buf -> 24 `i ]
 "40
-[v _back_24 `l ~T0 @X0 1 a ]
-[; ;hehe.c: 40: long int back_24 = (ledlength - front ) * 24;
-[e = _back_24 * - _ledlength -> _front `l -> -> 24 `i `l ]
+[v _val `l ~T0 @X0 1 a ]
+[; ;hehe.c: 40: long int val = (long int)tmp1;
+[e = _val -> _tmp1 `l ]
 "41
-[v _k `i ~T0 @X0 1 a ]
-[; ;hehe.c: 41: int k = 40 , l = 255;
-[e = _k -> 40 `i ]
-[v _l `i ~T0 @X0 1 a ]
-[e = _l -> 255 `i ]
-[; ;hehe.c: 42: while( k > 0 ) {
-"42
-[e $U 283  ]
+[v _back_24 `l ~T0 @X0 1 a ]
+[; ;hehe.c: 41: long int back_24 = (ledlength - front ) * 24;
+[e = _back_24 * - _ledlength -> _front `l -> -> 24 `i `l ]
+[; ;hehe.c: 54: for(long int i = 0; i < ledmax*24 ; i++ ){
+"54
+{
+[v _i `l ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `l ]
+[e $U 287  ]
 [e :U 284 ]
 {
-[; ;hehe.c: 43: l = 255;
-"43
-[e = _l -> 255 `i ]
-[; ;hehe.c: 44: while( l > 0) {
-"44
-[e $U 286  ]
-[e :U 287 ]
-{
-[; ;hehe.c: 45: l--;
-"45
-[e -- _l -> 1 `i ]
-"46
-}
-[e :U 286 ]
-"44
-[e $ > _l -> 0 `i 287  ]
-[e :U 288 ]
-[; ;hehe.c: 46: }
-[; ;hehe.c: 47: k--;
-"47
-[e -- _k -> 1 `i ]
-"48
-}
-[e :U 283 ]
-"42
-[e $ > _k -> 0 `i 284  ]
-[e :U 285 ]
-[; ;hehe.c: 48: }
-[; ;hehe.c: 50: for(long int i = 0; i < front_24; ++i){
-"50
-{
-[v _i `l ~T0 @X0 1 a ]
-[e = _i -> -> 0 `i `l ]
-[e $U 292  ]
-[e :U 289 ]
-{
-[; ;hehe.c: 51: PORTDbits.RD0 = 1;
-"51
-[e = . . _PORTDbits 0 0 -> -> 1 `i `uc ]
-[; ;hehe.c: 52: PORTDbits.RD0 = 0;
-"52
-[e = . . _PORTDbits 0 0 -> -> 0 `i `uc ]
-[; ;hehe.c: 53: __nop();
-"53
-[e ( ___nop ..  ]
-[; ;hehe.c: 54: __nop();
-"54
-[e ( ___nop ..  ]
-[; ;hehe.c: 55: __nop();
-"55
-[e ( ___nop ..  ]
-[; ;hehe.c: 56: __nop();
+[; ;hehe.c: 56: if(buf== 0){
 "56
-[e ( ___nop ..  ]
-[; ;hehe.c: 57: __nop();
+[e $ ! == _buf -> 0 `i 288  ]
+{
+[; ;hehe.c: 57: buf = 24;
 "57
-[e ( ___nop ..  ]
-[; ;hehe.c: 58: __nop();
-"58
-[e ( ___nop ..  ]
-[; ;hehe.c: 59: __nop();
-"59
-[e ( ___nop ..  ]
-[; ;hehe.c: 60: __nop();
-"60
-[e ( ___nop ..  ]
-[; ;hehe.c: 61: __nop();
-"61
-[e ( ___nop ..  ]
-"62
-}
-"50
-[e =+ _i -> -> 1 `i `l ]
-[e :U 292 ]
-[e $ < _i _front_24 289  ]
-[e :U 290 ]
-"62
-}
-[; ;hehe.c: 62: }
-[; ;hehe.c: 64: for(long int i = 0; i < lednum_24 ; i++ ){
-"64
-{
-[v _i `l ~T0 @X0 1 a ]
-[e = _i -> -> 0 `i `l ]
-[e $U 296  ]
-[e :U 293 ]
-{
-[; ;hehe.c: 66: if(buf== 0){
-"66
-[e $ ! == _buf -> 0 `i 297  ]
-{
-[; ;hehe.c: 67: buf = 24;
-"67
 [e = _buf -> 24 `i ]
-[; ;hehe.c: 68: val = (long int)tmp1;
-"68
+[; ;hehe.c: 58: val = (long int)tmp1;
+"58
 [e = _val -> _tmp1 `l ]
-"69
+"59
 }
-[; ;hehe.c: 69: }
-[e $U 298  ]
-"70
-[e :U 297 ]
-[; ;hehe.c: 70: else if(buf== 16){
-[e $ ! == _buf -> 16 `i 299  ]
+[; ;hehe.c: 59: }
+[e $U 289  ]
+"60
+[e :U 288 ]
+[; ;hehe.c: 60: else if(buf== 16){
+[e $ ! == _buf -> 16 `i 290  ]
 {
-[; ;hehe.c: 72: val = (long int)tmp2;
-"72
+[; ;hehe.c: 62: val = (long int)tmp2;
+"62
 [e = _val -> _tmp2 `l ]
-"73
+"63
 }
-[; ;hehe.c: 73: }
-[e $U 300  ]
-"74
-[e :U 299 ]
-[; ;hehe.c: 74: else if(buf== 8){
-[e $ ! == _buf -> 8 `i 301  ]
+[; ;hehe.c: 63: }
+[e $U 291  ]
+"64
+[e :U 290 ]
+[; ;hehe.c: 64: else if(buf== 8){
+[e $ ! == _buf -> 8 `i 292  ]
 {
-[; ;hehe.c: 75: val = (long int)tmp3;
-"75
+[; ;hehe.c: 65: val = (long int)tmp3;
+"65
 [e = _val -> _tmp3 `l ]
-"76
+"66
 }
-[e :U 301 ]
+[e :U 292 ]
+"68
+[e :U 291 ]
+[e :U 289 ]
+[; ;hehe.c: 66: }
+[; ;hehe.c: 68: if (val & 1) {
+[e $ ! != & _val -> -> 1 `i `l -> -> 0 `i `l 293  ]
+{
+[; ;hehe.c: 69: PORTDbits.RD0 = 1;
+"69
+[e = . . _PORTDbits 0 0 -> -> 1 `i `uc ]
+[; ;hehe.c: 70: __nop();
+"70
+[e ( ___nop ..  ]
+[; ;hehe.c: 71: __nop();
+"71
+[e ( ___nop ..  ]
+[; ;hehe.c: 72: __nop();
+"72
+[e ( ___nop ..  ]
+[; ;hehe.c: 73: __nop();
+"73
+[e ( ___nop ..  ]
+[; ;hehe.c: 74: __nop();
+"74
+[e ( ___nop ..  ]
+[; ;hehe.c: 75: __nop();
+"75
+[e ( ___nop ..  ]
+[; ;hehe.c: 76: PORTDbits.RD0 = 0;
+"76
+[e = . . _PORTDbits 0 0 -> -> 0 `i `uc ]
 "78
-[e :U 300 ]
-[e :U 298 ]
-[; ;hehe.c: 76: }
-[; ;hehe.c: 78: if (val & 1) {
-[e $ ! != & _val -> -> 1 `i `l -> -> 0 `i `l 302  ]
+}
+[; ;hehe.c: 78: } else {
+[e $U 294  ]
+[e :U 293 ]
 {
 [; ;hehe.c: 79: PORTDbits.RD0 = 1;
 "79
 [e = . . _PORTDbits 0 0 -> -> 1 `i `uc ]
-[; ;hehe.c: 80: __nop();
+[; ;hehe.c: 80: PORTDbits.RD0 = 0;
 "80
-[e ( ___nop ..  ]
+[e = . . _PORTDbits 0 0 -> -> 0 `i `uc ]
 [; ;hehe.c: 81: __nop();
 "81
 [e ( ___nop ..  ]
@@ -3188,360 +3155,282 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;hehe.c: 86: __nop();
 "86
 [e ( ___nop ..  ]
-[; ;hehe.c: 87: __nop();
 "87
-[e ( ___nop ..  ]
-[; ;hehe.c: 88: __nop();
-"88
-[e ( ___nop ..  ]
-[; ;hehe.c: 89: PORTDbits.RD0 = 0;
-"89
-[e = . . _PORTDbits 0 0 -> -> 0 `i `uc ]
-"91
 }
-[; ;hehe.c: 91: } else {
-[e $U 303  ]
-[e :U 302 ]
-{
-[; ;hehe.c: 92: PORTDbits.RD0 = 1;
-"92
-[e = . . _PORTDbits 0 0 -> -> 1 `i `uc ]
-[; ;hehe.c: 93: PORTDbits.RD0 = 0;
-"93
-[e = . . _PORTDbits 0 0 -> -> 0 `i `uc ]
-[; ;hehe.c: 94: __nop();
-"94
-[e ( ___nop ..  ]
-[; ;hehe.c: 95: __nop();
-"95
-[e ( ___nop ..  ]
-[; ;hehe.c: 96: __nop();
-"96
-[e ( ___nop ..  ]
-[; ;hehe.c: 97: __nop();
-"97
-[e ( ___nop ..  ]
-[; ;hehe.c: 98: __nop();
-"98
-[e ( ___nop ..  ]
-[; ;hehe.c: 99: __nop();
-"99
-[e ( ___nop ..  ]
-[; ;hehe.c: 100: __nop();
-"100
-[e ( ___nop ..  ]
-[; ;hehe.c: 101: __nop();
-"101
-[e ( ___nop ..  ]
-[; ;hehe.c: 102: __nop();
-"102
-[e ( ___nop ..  ]
-"103
-}
-[e :U 303 ]
-[; ;hehe.c: 103: }
-[; ;hehe.c: 104: val >>= (unsigned char)1;
-"104
-[e =>> _val -> -> 1 `i `uc ]
-[; ;hehe.c: 105: buf--;
-"105
-[e -- _buf -> 1 `i ]
-"106
-}
-"64
-[e ++ _i -> -> 1 `i `l ]
-[e :U 296 ]
-[e $ < _i _lednum_24 293  ]
 [e :U 294 ]
-"106
+[; ;hehe.c: 87: }
+[; ;hehe.c: 88: val >>= (unsigned char)1;
+"88
+[e =>> _val -> -> 1 `i `uc ]
+[; ;hehe.c: 89: buf--;
+"89
+[e -- _buf -> 1 `i ]
+"90
 }
-[; ;hehe.c: 106: }
-[; ;hehe.c: 108: for(long int i = 0; i < back_24; ++i){
-"108
-{
-[v _i `l ~T0 @X0 1 a ]
-[e = _i -> -> 0 `i `l ]
-[e $U 307  ]
-[e :U 304 ]
-{
-[; ;hehe.c: 109: PORTDbits.RD0 = 1;
-"109
-[e = . . _PORTDbits 0 0 -> -> 1 `i `uc ]
-[; ;hehe.c: 110: PORTDbits.RD0 = 0;
-"110
-[e = . . _PORTDbits 0 0 -> -> 0 `i `uc ]
-[; ;hehe.c: 111: __nop();
-"111
-[e ( ___nop ..  ]
-[; ;hehe.c: 112: __nop();
-"112
-[e ( ___nop ..  ]
-[; ;hehe.c: 113: __nop();
-"113
-[e ( ___nop ..  ]
-[; ;hehe.c: 114: __nop();
-"114
-[e ( ___nop ..  ]
-[; ;hehe.c: 115: __nop();
-"115
-[e ( ___nop ..  ]
-[; ;hehe.c: 116: __nop();
-"116
-[e ( ___nop ..  ]
-[; ;hehe.c: 117: __nop();
-"117
-[e ( ___nop ..  ]
-[; ;hehe.c: 118: __nop();
-"118
-[e ( ___nop ..  ]
-[; ;hehe.c: 119: __nop();
-"119
-[e ( ___nop ..  ]
-"120
+"54
+[e ++ _i -> -> 1 `i `l ]
+[e :U 287 ]
+[e $ < _i -> * _ledmax -> 24 `i `l 284  ]
+[e :U 285 ]
+"90
 }
-"108
-[e =+ _i -> -> 1 `i `l ]
-[e :U 307 ]
-[e $ < _i _back_24 304  ]
-[e :U 305 ]
-"120
+[; ;hehe.c: 90: }
+[; ;hehe.c: 102: }
+"102
+[e :UE 283 ]
 }
-[; ;hehe.c: 120: }
-[; ;hehe.c: 121: }
-"121
-[e :UE 282 ]
-}
-"124
+"105
 [v _bitflip `(ul ~T0 @X0 1 ef1`uc ]
 {
-[; ;hehe.c: 124: unsigned long int bitflip(unsigned char b) {
+[; ;hehe.c: 105: unsigned long int bitflip(unsigned char b) {
 [e :U _bitflip ]
 [v _b `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;hehe.c: 125: b = (b & 0xF0) >> 4 | (b & 0x0F) << 4;
-"125
+[; ;hehe.c: 106: b = (b & 0xF0) >> 4 | (b & 0x0F) << 4;
+"106
 [e = _b -> | >> & -> _b `i -> 240 `i -> 4 `i << & -> _b `i -> 15 `i -> 4 `i `uc ]
-[; ;hehe.c: 126: b = (b & 0xCC) >> 2 | (b & 0x33) << 2;
-"126
+[; ;hehe.c: 107: b = (b & 0xCC) >> 2 | (b & 0x33) << 2;
+"107
 [e = _b -> | >> & -> _b `i -> 204 `i -> 2 `i << & -> _b `i -> 51 `i -> 2 `i `uc ]
-[; ;hehe.c: 127: b = (b & 0xAA) >> 1 | (b & 0x55) << 1;
-"127
+[; ;hehe.c: 108: b = (b & 0xAA) >> 1 | (b & 0x55) << 1;
+"108
 [e = _b -> | >> & -> _b `i -> 170 `i -> 1 `i << & -> _b `i -> 85 `i -> 1 `i `uc ]
-[; ;hehe.c: 128: return (unsigned char)b;
-"128
+[; ;hehe.c: 109: return (unsigned char)b;
+"109
 [e ) -> _b `ul ]
-[e $UE 308  ]
-[; ;hehe.c: 129: }
-"129
-[e :UE 308 ]
+[e $UE 295  ]
+[; ;hehe.c: 110: }
+"110
+[e :UE 295 ]
 }
-"131
+"112
 [v _init `(v ~T0 @X0 1 ef ]
 {
-[; ;hehe.c: 131: void init(){
+[; ;hehe.c: 112: void init(){
 [e :U _init ]
 [f ]
-[; ;hehe.c: 132: OSCCONbits.IRCF2 = 1;
-"132
+[; ;hehe.c: 113: OSCCONbits.IRCF2 = 1;
+"113
 [e = . . _OSCCONbits 1 6 -> -> 1 `i `uc ]
-[; ;hehe.c: 133: OSCCONbits.IRCF1 = 1;
-"133
+[; ;hehe.c: 114: OSCCONbits.IRCF1 = 1;
+"114
 [e = . . _OSCCONbits 1 5 -> -> 1 `i `uc ]
-[; ;hehe.c: 134: OSCCONbits.IRCF0 = 1;
-"134
+[; ;hehe.c: 115: OSCCONbits.IRCF0 = 1;
+"115
 [e = . . _OSCCONbits 1 4 -> -> 1 `i `uc ]
-[; ;hehe.c: 135: OSCTUNEbits.PLLEN=1;
-"135
+[; ;hehe.c: 116: OSCTUNEbits.PLLEN=1;
+"116
 [e = . . _OSCTUNEbits 0 2 -> -> 1 `i `uc ]
-[; ;hehe.c: 137: ledlength=200;
-"137
-[e = _ledlength -> -> 200 `i `l ]
-[; ;hehe.c: 138: lednum=1;
-"138
+[; ;hehe.c: 118: srand(time((0)));
+"118
+[e ( _srand (1 -> ( _time (1 -> -> 0 `i `*l `ui ]
+[; ;hehe.c: 119: ledlength=300;
+"119
+[e = _ledlength -> -> 300 `i `l ]
+[; ;hehe.c: 120: lednum=1;
+"120
 [e = _lednum -> 1 `i ]
-[; ;hehe.c: 139: lednum_24= lednum*24;
-"139
+[; ;hehe.c: 121: lednum_24= lednum*24;
+"121
 [e = _lednum_24 -> * _lednum -> 24 `i `l ]
-[; ;hehe.c: 140: ledmax=3;
-"140
-[e = _ledmax -> 3 `i ]
-[; ;hehe.c: 142: led.r = 100;
-"142
-[e = . _led 0 -> -> 100 `i `uc ]
-[; ;hehe.c: 143: led.g = 100;
-"143
-[e = . _led 2 -> -> 100 `i `uc ]
-[; ;hehe.c: 144: led.b = 100;
-"144
+[; ;hehe.c: 122: ledmax=300;
+"122
+[e = _ledmax -> 300 `i ]
+[; ;hehe.c: 124: led.r = 1;
+"124
+[e = . _led 0 -> -> 1 `i `uc ]
+[; ;hehe.c: 125: led.g = 1;
+"125
+[e = . _led 2 -> -> 1 `i `uc ]
+[; ;hehe.c: 126: led.b = 100;
+"126
 [e = . _led 1 -> -> 100 `i `uc ]
-[; ;hehe.c: 146: isFlow=0;
-"146
+[; ;hehe.c: 128: isFlow=0;
+"128
 [e = _isFlow -> 0 `i ]
-[; ;hehe.c: 148: TRISDbits.RD0 = 0;
-"148
+[; ;hehe.c: 130: TRISDbits.RD0 = 0;
+"130
 [e = . . _TRISDbits 1 0 -> -> 0 `i `uc ]
-[; ;hehe.c: 149: }
-"149
-[e :UE 309 ]
+[; ;hehe.c: 131: }
+"131
+[e :UE 296 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"151
+"133
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;hehe.c: 151: void main() {
+[; ;hehe.c: 133: void main() {
 [e :U _main ]
 [f ]
-[; ;hehe.c: 152: init();
-"152
+[; ;hehe.c: 134: init();
+"134
 [e ( _init ..  ]
-[; ;hehe.c: 153: tmp1=bitflip(led.g);
-"153
+[; ;hehe.c: 135: tmp1=bitflip(led.g);
+"135
 [e = _tmp1 -> ( _bitflip (1 . _led 2 `uc ]
-[; ;hehe.c: 154: tmp2=bitflip(led.r);
-"154
+[; ;hehe.c: 136: tmp2=bitflip(led.r);
+"136
 [e = _tmp2 -> ( _bitflip (1 . _led 0 `uc ]
-[; ;hehe.c: 155: tmp3=bitflip(led.b);
-"155
+[; ;hehe.c: 137: tmp3=bitflip(led.b);
+"137
 [e = _tmp3 -> ( _bitflip (1 . _led 1 `uc ]
-"157
+"139
 [v _front `i ~T0 @X0 1 a ]
-[; ;hehe.c: 157: int front = 0;
+[; ;hehe.c: 139: int front = 0;
 [e = _front -> 0 `i ]
-[; ;hehe.c: 159: while(1) {
+[; ;hehe.c: 141: while(1) {
+"141
+[e :U 299 ]
+{
+[; ;hehe.c: 142: asm(" clrwdt");
+"142
+[; <"  clrwdt ;# ">
+[; ;hehe.c: 143: led.r = rand();
+"143
+[e = . _led 0 -> ( _rand ..  `uc ]
+[; ;hehe.c: 144: led.g = rand();
+"144
+[e = . _led 2 -> ( _rand ..  `uc ]
+[; ;hehe.c: 145: led.b = rand();
+"145
+[e = . _led 1 -> ( _rand ..  `uc ]
+[; ;hehe.c: 146: tmp1=bitflip(led.g);
+"146
+[e = _tmp1 -> ( _bitflip (1 . _led 2 `uc ]
+[; ;hehe.c: 147: tmp2=bitflip(led.r);
+"147
+[e = _tmp2 -> ( _bitflip (1 . _led 0 `uc ]
+[; ;hehe.c: 148: tmp3=bitflip(led.b);
+"148
+[e = _tmp3 -> ( _bitflip (1 . _led 1 `uc ]
+[; ;hehe.c: 149: GIE = 0; while (GIE);
+"149
+[e = _GIE -> -> 0 `i `b ]
+[e $U 301  ]
+[e :U 302 ]
+[e :U 301 ]
+[e $ _GIE 302  ]
+[e :U 303 ]
+[; ;hehe.c: 150: if(front > ledlength)
+"150
+[e $ ! > -> _front `l _ledlength 304  ]
+[; ;hehe.c: 151: {
+"151
+{
+[; ;hehe.c: 152: front=0;
+"152
+[e = _front -> 0 `i ]
+[; ;hehe.c: 153: isFlow=0;
+"153
+[e = _isFlow -> 0 `i ]
+[; ;hehe.c: 154: lednum=1;
+"154
+[e = _lednum -> 1 `i ]
+[; ;hehe.c: 155: lednum_24= lednum*24;
+"155
+[e = _lednum_24 -> * _lednum -> 24 `i `l ]
+"156
+}
+[e :U 304 ]
+[; ;hehe.c: 156: }
+[; ;hehe.c: 157: led_send(front);
+"157
+[e ( _led_send (1 _front ]
+[; ;hehe.c: 158: if(isFlow){
+"158
+[e $ ! != _isFlow -> 0 `i 305  ]
+{
+[; ;hehe.c: 159: front++;
 "159
+[e ++ _front -> 1 `i ]
+"160
+}
+[e :U 305 ]
+[; ;hehe.c: 160: }
+[; ;hehe.c: 161: if(lednum!=ledmax)
+"161
+[e $ ! != _lednum _ledmax 306  ]
+[; ;hehe.c: 162: {
+"162
+{
+[; ;hehe.c: 163: lednum++;
+"163
+[e ++ _lednum -> 1 `i ]
+[; ;hehe.c: 164: lednum_24= lednum*24;
+"164
+[e = _lednum_24 -> * _lednum -> 24 `i `l ]
+"165
+}
+[e :U 306 ]
+[; ;hehe.c: 165: }
+[; ;hehe.c: 166: if(lednum==ledmax)
+"166
+[e $ ! == _lednum _ledmax 307  ]
+[; ;hehe.c: 167: {
+"167
+{
+[; ;hehe.c: 168: isFlow=1;
+"168
+[e = _isFlow -> 1 `i ]
+"169
+}
+[e :U 307 ]
+"171
+[v _k `i ~T0 @X0 1 a ]
+[; ;hehe.c: 169: }
+[; ;hehe.c: 171: int k = 1 , l = 5;
+[e = _k -> 1 `i ]
+[v _l `i ~T0 @X0 1 a ]
+[e = _l -> 5 `i ]
+[; ;hehe.c: 172: while( k > 0 ) {
+"172
+[e $U 308  ]
+[e :U 309 ]
+{
+[; ;hehe.c: 173: l = 5;
+"173
+[e = _l -> 5 `i ]
+[; ;hehe.c: 174: while( l > 0) {
+"174
+[e $U 311  ]
 [e :U 312 ]
 {
-[; ;hehe.c: 160: asm(" clrwdt");
-"160
-[; <"  clrwdt ;# ">
-[; ;hehe.c: 161: GIE = 0; while (GIE);
-"161
-[e = _GIE -> -> 0 `i `b ]
+[; ;hehe.c: 175: l--;
+"175
+[e -- _l -> 1 `i ]
+"176
+}
+[e :U 311 ]
+"174
+[e $ > _l -> 0 `i 312  ]
+[e :U 313 ]
+[; ;hehe.c: 176: }
+[; ;hehe.c: 177: k--;
+"177
+[e -- _k -> 1 `i ]
+"178
+}
+[e :U 308 ]
+"172
+[e $ > _k -> 0 `i 309  ]
+[e :U 310 ]
+[; ;hehe.c: 178: }
+[; ;hehe.c: 180: GIE = 1; while (!GIE);
+"180
+[e = _GIE -> -> 1 `i `b ]
 [e $U 314  ]
 [e :U 315 ]
 [e :U 314 ]
-[e $ _GIE 315  ]
+[e $ ! _GIE 315  ]
 [e :U 316 ]
-[; ;hehe.c: 162: if(front > ledlength -lednum)
-"162
-[e $ ! > -> _front `l - _ledlength -> _lednum `l 317  ]
-[; ;hehe.c: 163: {
-"163
-{
-[; ;hehe.c: 164: front=0;
-"164
-[e = _front -> 0 `i ]
-[; ;hehe.c: 165: isFlow=0;
-"165
-[e = _isFlow -> 0 `i ]
-[; ;hehe.c: 166: lednum=1;
-"166
-[e = _lednum -> 1 `i ]
-[; ;hehe.c: 167: lednum_24= lednum*24;
-"167
-[e = _lednum_24 -> * _lednum -> 24 `i `l ]
-"168
-}
-[e :U 317 ]
-[; ;hehe.c: 168: }
-[; ;hehe.c: 169: led_send(front);
-"169
-[e ( _led_send (1 _front ]
-[; ;hehe.c: 170: if(isFlow){
-"170
-[e $ ! != _isFlow -> 0 `i 318  ]
-{
-[; ;hehe.c: 171: front++;
-"171
-[e ++ _front -> 1 `i ]
-"172
-}
-[e :U 318 ]
-[; ;hehe.c: 172: }
-[; ;hehe.c: 173: if(lednum!=ledmax)
-"173
-[e $ ! != _lednum _ledmax 319  ]
-[; ;hehe.c: 174: {
-"174
-{
-[; ;hehe.c: 175: lednum++;
-"175
-[e ++ _lednum -> 1 `i ]
-[; ;hehe.c: 176: lednum_24= lednum*24;
-"176
-[e = _lednum_24 -> * _lednum -> 24 `i `l ]
-"177
-}
-[e :U 319 ]
-[; ;hehe.c: 177: }
-[; ;hehe.c: 178: if(lednum==ledmax)
-"178
-[e $ ! == _lednum _ledmax 320  ]
-[; ;hehe.c: 179: {
-"179
-{
-[; ;hehe.c: 180: isFlow=1;
-"180
-[e = _isFlow -> 1 `i ]
 "181
 }
-[e :U 320 ]
-"183
-[v _k `i ~T0 @X0 1 a ]
+[e :U 298 ]
+"141
+[e $U 299  ]
+[e :U 300 ]
 [; ;hehe.c: 181: }
-[; ;hehe.c: 183: int k = 10 , l = 255;
-[e = _k -> 10 `i ]
-[v _l `i ~T0 @X0 1 a ]
-[e = _l -> 255 `i ]
-[; ;hehe.c: 184: while( k > 0 ) {
-"184
-[e $U 321  ]
-[e :U 322 ]
-{
-[; ;hehe.c: 185: l = 255;
-"185
-[e = _l -> 255 `i ]
-[; ;hehe.c: 186: while( l > 0) {
-"186
-[e $U 324  ]
-[e :U 325 ]
-{
-[; ;hehe.c: 187: l--;
-"187
-[e -- _l -> 1 `i ]
-"188
-}
-[e :U 324 ]
-"186
-[e $ > _l -> 0 `i 325  ]
-[e :U 326 ]
-[; ;hehe.c: 188: }
-[; ;hehe.c: 189: k--;
-"189
-[e -- _k -> 1 `i ]
-"190
-}
-[e :U 321 ]
-"184
-[e $ > _k -> 0 `i 322  ]
-[e :U 323 ]
-[; ;hehe.c: 190: }
-[; ;hehe.c: 192: GIE = 1; while (!GIE);
-"192
-[e = _GIE -> -> 1 `i `b ]
-[e $U 327  ]
-[e :U 328 ]
-[e :U 327 ]
-[e $ ! _GIE 328  ]
-[e :U 329 ]
-"193
-}
-[e :U 311 ]
-"159
-[e $U 312  ]
-[e :U 313 ]
-[; ;hehe.c: 193: }
-[; ;hehe.c: 194: }
-"194
-[e :UE 310 ]
+[; ;hehe.c: 182: }
+"182
+[e :UE 297 ]
 }

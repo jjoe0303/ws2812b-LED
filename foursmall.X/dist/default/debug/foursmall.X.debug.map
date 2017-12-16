@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v1.44\dat\en_msgs.txt -cs \
   -h+dist/default/debug\foursmall.X.debug.sym \
   --cmf=dist/default/debug\foursmall.X.debug.cmf -z -Q18F4520 \
-  -oC:\Users\knu\AppData\Local\Temp\s2vs.2 \
+  -oC:\Users\knu\AppData\Local\Temp\s688.2 \
   -Mdist/default/debug/foursmall.X.debug.map -E1 -ver=XC8 \
   -ASTACK=080h-05eeh -pstack=STACK -ACODE=00h-07CFFh -ACONST=00h-07CFFh \
   -ASMALLCONST=0600h-06FFhx119 -AMEDIUMCONST=0600h-07CFFh -ACOMRAM=01h-07Fh \
@@ -23,7 +23,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\knu\AppData\Local\Temp\s2vs.obj \
+  C:\Users\knu\AppData\Local\Temp\s688.obj \
   dist/default/debug\foursmall.X.debug.obj 
 
 Object code version is 3.11
@@ -36,22 +36,22 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\knu\AppData\Local\Temp\s2vs.obj
+C:\Users\knu\AppData\Local\Temp\s688.obj
                 init                                  2        2        4        0       0
                 reset_vec                             0        0        2        0       0
                 idloc                            200000   200000        8   200000       0
                 config                           300000   300000        E   300000       0
 dist/default/debug\foursmall.X.debug.obj
-                text5                              791C     791C       5A     3C8E       0
-                text4                              78A0     78A0       26     3C50       0
-                text3                              7976     7976       66     3CBB       0
-                text2                              78C6     78C6       56     3C63       0
-                text1                              7B2C     7B2C      1D4     3D96       0
-                text0                              79DC     79DC      150     3CEE       0
-                cstackCOMRAM                          1        1       37        1       1
-                bssCOMRAM                            47       47        B        1       1
-                cinit                              788E     788E       12     3C47       0
-                nvCOMRAM                             38       38        F        1       1
+                text5                              7878     7878       26     3C3C       0
+                text4                              794E     794E       6E     3CA7       0
+                text3                              789E     789E       56     3C4F       0
+                text2                              78F4     78F4       5A     3C7A       0
+                text1                              79BC     79BC      17C     3CDE       0
+                text0                              7B38     7B38      1C8     3D9C       0
+                cstackCOMRAM                          1        1       2B        1       1
+                bssCOMRAM                            3B       3B        D        1       1
+                cinit                              7866     7866       12     3C33       0
+                nvCOMRAM                             2C       2C        F        1       1
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   STACK          
@@ -59,13 +59,13 @@ TOTAL           Name                               Link     Load   Length     Sp
         CLASS   CODE           
                 init                                  2        2        4         0
                 reset_vec                             0        0        2         0
-                text5                              791C     791C       5A         0
-                text4                              78A0     78A0       26         0
-                text3                              7976     7976       66         0
-                text2                              78C6     78C6       56         0
-                text1                              7B2C     7B2C      1D4         0
-                text0                              79DC     79DC      150         0
-                cinit                              788E     788E       12         0
+                text5                              7878     7878       26         0
+                text4                              794E     794E       6E         0
+                text3                              789E     789E       56         0
+                text2                              78F4     78F4       5A         0
+                text1                              79BC     79BC      17C         0
+                text0                              7B38     7B38      1C8         0
+                cinit                              7866     7866       12         0
 
         CLASS   CONST          
 
@@ -74,9 +74,9 @@ TOTAL           Name                               Link     Load   Length     Sp
         CLASS   MEDIUMCONST    
 
         CLASS   COMRAM         
-                cstackCOMRAM                          1        1       37         1
-                bssCOMRAM                            47       47        B         1
-                nvCOMRAM                             38       38        F         1
+                cstackCOMRAM                          1        1       2B         1
+                bssCOMRAM                            3B       3B        D         1
+                nvCOMRAM                             2C       2C        F         1
 
         CLASS   ABS1           
 
@@ -113,14 +113,14 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class
 
                 reset_vec                      000000  000006  000006         0       0  CODE    
-                cstackCOMRAM                   000001  000051  000052         1       1  COMRAM  
-                cinit                          00788E  000012  0078A0      3C47       0  CODE    
-                text4                          0078A0  000026  0078C6      3C50       0  CODE    
-                text2                          0078C6  000056  00791C      3C63       0  CODE    
-                text5                          00791C  00005A  007976      3C8E       0  CODE    
-                text3                          007976  000066  0079DC      3CBB       0  CODE    
-                text0                          0079DC  000150  007B2C      3CEE       0  CODE    
-                text1                          007B2C  0001D4  007D00      3D96       0  CODE    
+                cstackCOMRAM                   000001  000047  000048         1       1  COMRAM  
+                cinit                          007866  000012  007878      3C33       0  CODE    
+                text5                          007878  000026  00789E      3C3C       0  CODE    
+                text3                          00789E  000056  0078F4      3C4F       0  CODE    
+                text2                          0078F4  00005A  00794E      3C7A       0  CODE    
+                text4                          00794E  00006E  0079BC      3CA7       0  CODE    
+                text1                          0079BC  00017C  007B38      3CDE       0  CODE    
+                text0                          007B38  0001C8  007D00      3D9C       0  CODE    
                 idloc                          200000  000008  200008    200000       0  IDLOC   
                 config                         300000  00000E  30000E    300000       0  CONFIG  
 
@@ -134,12 +134,12 @@ UNUSED ADDRESS RANGES
         BANK3            000300-0003FF              100
         BANK4            000400-0004FF              100
         BANK5            000500-0005EE               EF
-        BIGRAM           000052-0005EE              59D
-        CODE             000006-00788D             7888
-        COMRAM           000052-00007F               2E
-        CONST            000006-00788D             7888
+        BIGRAM           000048-0005EE              5A7
+        CODE             000006-007865             7860
+        COMRAM           000048-00007F               38
+        CONST            000006-007865             7860
         EEDATA           F00000-F000FF              100
-        MEDIUMCONST      000600-00788D             728E
+        MEDIUMCONST      000600-007865             7266
         RAM              000080-0005EE              100
         SFR              000F80-000F9B               1C
                          000F9D-000FD3               37
@@ -147,7 +147,7 @@ UNUSED ADDRESS RANGES
                          000FE0-000FE2                3
                          000FE8-000FEA                3
                          000FF0-000FFB                C
-        SMALLCONST       000600-00788D              100
+        SMALLCONST       000600-007865              100
         STACK            000080-0005EE              56F
 
                                   Symbol Table
@@ -218,7 +218,7 @@ __Hrparam                rparam       000000
 __Hsfr                   sfr          000000
 __Hsmallconst            smallconst   000000
 __Hspace_0               (abs)        30000E
-__Hspace_1               (abs)        000052
+__Hspace_1               (abs)        000048
 __Hspace_2               (abs)        000000
 __Hstack                 stack        000000
 __Hstruct                struct       000000
@@ -295,42 +295,42 @@ __Ltext3                 text3        000000
 __Ltext4                 text4        000000
 __Ltext5                 text5        000000
 __S0                     (abs)        30000E
-__S1                     (abs)        000052
+__S1                     (abs)        000048
 __S2                     (abs)        000000
 ___inthi_sp              stack        000000
 ___intlo_sp              stack        000000
-___lmul                  text2        0078C6
+___lmul                  text3        00789E
 ___lmul@multiplicand     cstackCOMRAM 000005
 ___lmul@multiplier       cstackCOMRAM 000001
 ___lmul@product          cstackCOMRAM 000009
 ___param_bank            (abs)        000000
 ___rparam_used           (abs)        000001
 ___sp                    stack        000000
-___wmul                  text4        0078A0
+___wmul                  text5        007878
 ___wmul@multiplicand     cstackCOMRAM 000003
 ___wmul@multiplier       cstackCOMRAM 000001
 ___wmul@product          cstackCOMRAM 000005
 __accesstop              (abs)        000080
 __activetblptr           (abs)        000000
-__end_of___lmul          text2        00791C
-__end_of___wmul          text4        0078C6
-__end_of__initialization cinit        00789A
-__end_of_bitflip         text5        007976
-__end_of_init            text3        0079DC
-__end_of_led_send        text1        007D00
-__end_of_main            text0        007B2C
-__initialization         cinit        00788E
+__end_of___lmul          text3        0078F4
+__end_of___wmul          text5        00789E
+__end_of__initialization cinit        007872
+__end_of_bitflip         text2        00794E
+__end_of_init            text4        0079BC
+__end_of_led_send        text1        007B38
+__end_of_main            text0        007D00
+__initialization         cinit        007866
 __mediumconst            mediumconst  000000
-__pbssCOMRAM             bssCOMRAM    000047
-__pcinit                 cinit        00788E
+__pbssCOMRAM             bssCOMRAM    00003B
+__pcinit                 cinit        007866
 __pcstackCOMRAM          cstackCOMRAM 000001
-__pnvCOMRAM              nvCOMRAM     000038
-__ptext0                 text0        0079DC
-__ptext1                 text1        007B2C
-__ptext2                 text2        0078C6
-__ptext3                 text3        007976
-__ptext4                 text4        0078A0
-__ptext5                 text5        00791C
+__pnvCOMRAM              nvCOMRAM     00002C
+__ptext0                 text0        007B38
+__ptext1                 text1        0079BC
+__ptext2                 text2        0078F4
+__ptext3                 text3        00789E
+__ptext4                 text4        00794E
+__ptext5                 text5        007878
 __ramtop                 ramtop       000600
 __size_of___lmul         (abs)        000000
 __size_of___wmul         (abs)        000000
@@ -339,55 +339,54 @@ __size_of_init           (abs)        000000
 __size_of_led_send       (abs)        000000
 __size_of_main           (abs)        000000
 __smallconst             smallconst   000000
-_bitflip                 text5        00791C
-_flag                    bssCOMRAM    000050
-_init                    text3        007976
-_isFlow                  bssCOMRAM    00004E
-_led                     bssCOMRAM    00004B
-_led_send                text1        007B2C
-_ledlength               nvCOMRAM     00003C
-_ledmax                  nvCOMRAM     000040
-_lednum                  nvCOMRAM     000042
-_lednum_24               nvCOMRAM     000038
-_main                    text0        0079DC
-_temp                    bssCOMRAM    000047
-_tmp1                    nvCOMRAM     000046
-_tmp2                    nvCOMRAM     000045
-_tmp3                    nvCOMRAM     000044
+_bitflip                 text2        0078F4
+_effect                  bssCOMRAM    000042
+_flag                    bssCOMRAM    000046
+_init                    text4        00794E
+_isFlow                  bssCOMRAM    000044
+_led                     bssCOMRAM    00003F
+_led_send                text1        0079BC
+_ledlength               nvCOMRAM     000030
+_ledmax                  nvCOMRAM     000034
+_lednum                  nvCOMRAM     000036
+_lednum_24               nvCOMRAM     00002C
+_main                    text0        007B38
+_temp                    bssCOMRAM    00003B
+_tmp1                    nvCOMRAM     00003A
+_tmp2                    nvCOMRAM     000039
+_tmp3                    nvCOMRAM     000038
 bitflip@b                cstackCOMRAM 000007
-end_of_initialization    cinit        00789A
+end_of_initialization    cinit        007872
 intlevel0                text         000000
 intlevel1                text         000000
 intlevel2                text         000000
 intlevel3                text         000000
-led_send@back_24         cstackCOMRAM 000017
-led_send@buf             cstackCOMRAM 00002B
+led_send@back_24         cstackCOMRAM 000018
+led_send@buf             cstackCOMRAM 000024
 led_send@front           cstackCOMRAM 00000D
-led_send@front_24        cstackCOMRAM 000013
-led_send@i               cstackCOMRAM 00001B
-led_send@i_215           cstackCOMRAM 00001F
-led_send@i_216           cstackCOMRAM 000023
-led_send@val             cstackCOMRAM 000027
-main@front               cstackCOMRAM 000036
-main@k                   cstackCOMRAM 000032
-main@l                   cstackCOMRAM 000034
+led_send@front_24        cstackCOMRAM 000014
+led_send@i               cstackCOMRAM 00001C
+led_send@val             cstackCOMRAM 000020
+main@front               cstackCOMRAM 00002A
+main@k                   cstackCOMRAM 000026
+main@l                   cstackCOMRAM 000028
 stackhi                  (abs)        0005EE
 stacklo                  (abs)        000080
 start                    init         000002
-start_initialization     cinit        00788E
+start_initialization     cinit        007866
 
 
 FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 131 in file "hehe.c"
+		line 134 in file "hehe.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
-  l               2   51[COMRAM] int 
-  k               2   49[COMRAM] int 
-  front           2   53[COMRAM] int 
+  l               2   39[COMRAM] int 
+  k               2   37[COMRAM] int 
+  front           2   41[COMRAM] int 
  Return value:  Size  Location     Type
                   1    wreg      void 
  Registers used:
@@ -399,12 +398,11 @@ FUNCTION INFORMATION:
  Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
       Params:         0       0       0       0       0       0       0
       Locals:         6       0       0       0       0       0       0
-      Temps:          5       0       0       0       0       0       0
-      Totals:        11       0       0       0       0       0       0
-Total ram usage:       11 bytes
+      Temps:          0       0       0       0       0       0       0
+      Totals:         6       0       0       0       0       0       0
+Total ram usage:        6 bytes
  Hardware stack levels required when called:    2
  This function calls:
-		___wmul
 		_bitflip
 		_init
 		_led_send
@@ -415,17 +413,15 @@ Total ram usage:       11 bytes
 
  *************** function _led_send *****************
  Defined at:
-		line 36 in file "hehe.c"
+		line 38 in file "hehe.c"
  Parameters:    Size  Location     Type
   front           2   12[COMRAM] int 
  Auto vars:     Size  Location     Type
-  i               4   34[COMRAM] long 
-  i               4   30[COMRAM] long 
-  i               4   26[COMRAM] long 
-  val             4   38[COMRAM] long 
-  back_24         4   22[COMRAM] long 
-  front_24        4   18[COMRAM] long 
-  buf             2   42[COMRAM] int 
+  i               4   27[COMRAM] long 
+  val             4   31[COMRAM] long 
+  back_24         4   23[COMRAM] long 
+  front_24        4   19[COMRAM] long 
+  buf             2   35[COMRAM] int 
  Return value:  Size  Location     Type
                   1    wreg      void 
  Registers used:
@@ -436,16 +432,47 @@ Total ram usage:       11 bytes
 		Unchanged: 
  Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
       Params:         2       0       0       0       0       0       0
-      Locals:        26       0       0       0       0       0       0
-      Temps:          4       0       0       0       0       0       0
-      Totals:        32       0       0       0       0       0       0
-Total ram usage:       32 bytes
+      Locals:        18       0       0       0       0       0       0
+      Temps:          5       0       0       0       0       0       0
+      Totals:        25       0       0       0       0       0       0
+Total ram usage:       25 bytes
  Hardware stack levels used:    1
  Hardware stack levels required when called:    1
  This function calls:
 		___lmul
 		___wmul
+		_bitflip
  This function is called by:
+		_main
+ This function uses a non-reentrant model
+
+
+ *************** function _bitflip *****************
+ Defined at:
+		line 105 in file "hehe.c"
+ Parameters:    Size  Location     Type
+  b               1    wreg     unsigned char 
+ Auto vars:     Size  Location     Type
+  b               1    6[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  4    0[COMRAM] unsigned long 
+ Registers used:
+		wreg, status,2, status,0
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+      Params:         4       0       0       0       0       0       0
+      Locals:         1       0       0       0       0       0       0
+      Temps:          2       0       0       0       0       0       0
+      Totals:         7       0       0       0       0       0       0
+Total ram usage:        7 bytes
+ Hardware stack levels used:    1
+ This function calls:
+		Nothing
+ This function is called by:
+		_led_send
 		_main
  This function uses a non-reentrant model
 
@@ -482,7 +509,7 @@ Total ram usage:       12 bytes
 
  *************** function _init *****************
  Defined at:
-		line 111 in file "hehe.c"
+		line 112 in file "hehe.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -538,36 +565,6 @@ Total ram usage:        6 bytes
  This function is called by:
 		_led_send
 		_init
-		_main
- This function uses a non-reentrant model
-
-
- *************** function _bitflip *****************
- Defined at:
-		line 104 in file "hehe.c"
- Parameters:    Size  Location     Type
-  b               1    wreg     unsigned char 
- Auto vars:     Size  Location     Type
-  b               1    6[COMRAM] unsigned char 
- Return value:  Size  Location     Type
-                  4    0[COMRAM] unsigned long 
- Registers used:
-		wreg, status,2, status,0
- Tracked objects:
-		On entry : 
-		On exit  : 
-		Unchanged: 
- Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
-      Params:         4       0       0       0       0       0       0
-      Locals:         1       0       0       0       0       0       0
-      Temps:          2       0       0       0       0       0       0
-      Totals:         7       0       0       0       0       0       0
-Total ram usage:        7 bytes
- Hardware stack levels used:    1
- This function calls:
-		Nothing
- This function is called by:
-		_main
  This function uses a non-reentrant model
 
 
@@ -576,25 +573,25 @@ MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 hehe.c
-		_init          		CODE           	7976	0000	103
-		_led_send      		CODE           	7B2C	0000	469
-		_main          		CODE           	79DC	0000	337
-		_bitflip       		CODE           	791C	0000	91
+		_init          		CODE           	794E	0000	111
+		_led_send      		CODE           	79BC	0000	381
+		_main          		CODE           	7B38	0000	457
+		_bitflip       		CODE           	78F4	0000	91
 
-hehe.c estimated size: 1000
+hehe.c estimated size: 1040
 
 C:\Program Files (x86)\Microchip\xc8\v1.44\sources\common\Umul16.c
-		___wmul        		CODE           	78A0	0000	39
+		___wmul        		CODE           	7878	0000	39
 
 C:\Program Files (x86)\Microchip\xc8\v1.44\sources\common\Umul16.c estimated size: 39
 
 shared
-		__initialization		CODE           	788E	0000	13
+		__initialization		CODE           	7866	0000	13
 
 shared estimated size: 13
 
 C:\Program Files (x86)\Microchip\xc8\v1.44\sources\common\Umul32.c
-		___lmul        		CODE           	78C6	0000	87
+		___lmul        		CODE           	789E	0000	87
 
 C:\Program Files (x86)\Microchip\xc8\v1.44\sources\common\Umul32.c estimated size: 87
 

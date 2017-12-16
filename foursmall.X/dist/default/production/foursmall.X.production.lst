@@ -1,0 +1,1578 @@
+
+
+Microchip Technology PIC18 LITE Macro Assembler V1.44 build -154322312 
+                                                                                               Sat Dec 16 23:33:47 2017
+
+Microchip Technology Omniscient Code Generator v1.44 (Free mode) build 201709140600
+     1                           	processor	18F4520
+     2                           	fnconf	rparam,??,?,0
+     3                           	opt	pw 120
+     4                           	opt	lm
+     5                           	psect	nvCOMRAM,global,class=COMRAM,space=1,delta=1,noexec
+     6                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     7                           	psect	bssCOMRAM,global,class=COMRAM,space=1,delta=1,noexec
+     8                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1,noexec
+     9                           	psect	text0,global,reloc=2,class=CODE,delta=1
+    10                           	psect	text1,global,reloc=2,class=CODE,delta=1
+    11                           	psect	text2,global,reloc=2,class=CODE,delta=1,group=1
+    12                           	psect	text3,global,reloc=2,class=CODE,delta=1
+    13                           	psect	text4,global,reloc=2,class=CODE,delta=1,group=1
+    14                           	psect	text5,global,reloc=2,class=CODE,delta=1
+    15                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1,noexec
+    16                           	psect	rparam,global,class=COMRAM,space=1,delta=1,noexec
+    17  0000                     
+    18                           ; Version 1.44
+    19                           ; Generated 14/09/2017 GMT
+    20                           ; 
+    21                           ; Copyright © 2017, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    22                           ; All rights reserved.
+    23                           ; 
+    24                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    25                           ; 
+    26                           ; Redistribution and use in source and binary forms, with or without modification, are
+    27                           ; permitted provided that the following conditions are met:
+    28                           ; 
+    29                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    30                           ;        conditions and the following disclaimer.
+    31                           ; 
+    32                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    33                           ;        of conditions and the following disclaimer in the documentation and/or other
+    34                           ;        materials provided with the distribution.
+    35                           ; 
+    36                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    37                           ;        software without specific prior written permission.
+    38                           ; 
+    39                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    40                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    41                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    42                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    43                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    44                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    45                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    46                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    47                           ; 
+    48                           ; 
+    49                           ; Code-generator required, PIC18F4520 Definitions
+    50                           ; 
+    51                           ; SFR Addresses
+    52  0000                     
+    53                           	psect	nvCOMRAM
+    54  000044                     __pnvCOMRAM:
+    55                           	opt stack 0
+    56  000044                     _lednum_24:
+    57                           	opt stack 0
+    58  000044                     	ds	4
+    59  000048                     _ledlength:
+    60                           	opt stack 0
+    61  000048                     	ds	4
+    62  00004C                     _ledmax:
+    63                           	opt stack 0
+    64  00004C                     	ds	2
+    65  00004E                     _lednum:
+    66                           	opt stack 0
+    67  00004E                     	ds	2
+    68  000050                     _tmp3:
+    69                           	opt stack 0
+    70  000050                     	ds	1
+    71  000051                     _tmp2:
+    72                           	opt stack 0
+    73  000051                     	ds	1
+    74  000052                     _tmp1:
+    75                           	opt stack 0
+    76  000052                     	ds	1
+    77  0000                     _TRISDbits	set	3989
+    78  0000                     _OSCTUNEbits	set	3995
+    79  0000                     _OSCCONbits	set	4051
+    80  0000                     _PORTDbits	set	3971
+    81  0000                     _GIE	set	32663
+    82                           
+    83                           ; #config settings
+    84  0000                     
+    85                           	psect	cinit
+    86  007AFE                     __pcinit:
+    87                           	opt stack 0
+    88  007AFE                     start_initialization:
+    89                           	opt stack 0
+    90  007AFE                     __initialization:
+    91                           	opt stack 0
+    92                           
+    93                           ; Clear objects allocated to COMRAM (11 bytes)
+    94  007AFE  EE00  F053         	lfsr	0,__pbssCOMRAM
+    95  007B02  0E0B               	movlw	11
+    96  007B04                     clear_0:
+    97  007B04  6AEE               	clrf	postinc0,c
+    98  007B06  06E8               	decf	wreg,f,c
+    99  007B08  E1FD               	bnz	clear_0
+   100  007B0A                     end_of_initialization:
+   101                           	opt stack 0
+   102  007B0A                     __end_of__initialization:
+   103                           	opt stack 0
+   104  007B0A  0100               	movlb	0
+   105  007B0C  EF26  F03E         	goto	_main	;jump to C main() function
+   106                           postinc0	equ	0xFEE
+   107                           wreg	equ	0xFE8
+   108                           
+   109                           	psect	bssCOMRAM
+   110  000053                     __pbssCOMRAM:
+   111                           	opt stack 0
+   112  000053                     _temp:
+   113                           	opt stack 0
+   114  000053                     	ds	4
+   115  000057                     _led:
+   116                           	opt stack 0
+   117  000057                     	ds	3
+   118  00005A                     _isFlow:
+   119                           	opt stack 0
+   120  00005A                     	ds	2
+   121  00005C                     _flag:
+   122                           	opt stack 0
+   123  00005C                     	ds	2
+   124                           postinc0	equ	0xFEE
+   125                           wreg	equ	0xFE8
+   126                           
+   127                           	psect	cstackCOMRAM
+   128  000001                     __pcstackCOMRAM:
+   129                           	opt stack 0
+   130  000001                     ?___wmul:
+   131                           	opt stack 0
+   132  000001                     ?_bitflip:
+   133                           	opt stack 0
+   134  000001                     ?___lmul:
+   135                           	opt stack 0
+   136  000001                     ___wmul@multiplier:
+   137                           	opt stack 0
+   138  000001                     ___lmul@multiplier:
+   139                           	opt stack 0
+   140                           
+   141                           ; 4 bytes @ 0x0
+   142  000001                     	ds	2
+   143  000003                     ___wmul@multiplicand:
+   144                           	opt stack 0
+   145                           
+   146                           ; 2 bytes @ 0x2
+   147  000003                     	ds	2
+   148  000005                     ??_bitflip:
+   149  000005                     ___wmul@product:
+   150                           	opt stack 0
+   151  000005                     ___lmul@multiplicand:
+   152                           	opt stack 0
+   153                           
+   154                           ; 4 bytes @ 0x4
+   155  000005                     	ds	2
+   156  000007                     bitflip@b:
+   157                           	opt stack 0
+   158                           
+   159                           ; 1 bytes @ 0x6
+   160  000007                     	ds	2
+   161  000009                     ___lmul@product:
+   162                           	opt stack 0
+   163                           
+   164                           ; 4 bytes @ 0x8
+   165  000009                     	ds	4
+   166  00000D                     led_send@front:
+   167                           	opt stack 0
+   168                           
+   169                           ; 2 bytes @ 0xC
+   170  00000D                     	ds	2
+   171  00000F                     ??_led_send:
+   172                           
+   173                           ; 1 bytes @ 0xE
+   174  00000F                     	ds	4
+   175  000013                     led_send@front_24:
+   176                           	opt stack 0
+   177                           
+   178                           ; 4 bytes @ 0x12
+   179  000013                     	ds	4
+   180  000017                     led_send@back_24:
+   181                           	opt stack 0
+   182                           
+   183                           ; 4 bytes @ 0x16
+   184  000017                     	ds	4
+   185  00001B                     led_send@i:
+   186                           	opt stack 0
+   187                           
+   188                           ; 4 bytes @ 0x1A
+   189  00001B                     	ds	4
+   190  00001F                     led_send@i_217:
+   191                           	opt stack 0
+   192                           
+   193                           ; 4 bytes @ 0x1E
+   194  00001F                     	ds	4
+   195  000023                     led_send@i_218:
+   196                           	opt stack 0
+   197                           
+   198                           ; 4 bytes @ 0x22
+   199  000023                     	ds	4
+   200  000027                     led_send@k:
+   201                           	opt stack 0
+   202                           
+   203                           ; 2 bytes @ 0x26
+   204  000027                     	ds	2
+   205  000029                     led_send@l:
+   206                           	opt stack 0
+   207                           
+   208                           ; 2 bytes @ 0x28
+   209  000029                     	ds	2
+   210  00002B                     led_send@val:
+   211                           	opt stack 0
+   212                           
+   213                           ; 4 bytes @ 0x2A
+   214  00002B                     	ds	4
+   215  00002F                     led_send@buf:
+   216                           	opt stack 0
+   217                           
+   218                           ; 2 bytes @ 0x2E
+   219  00002F                     	ds	2
+   220  000031                     ??_main:
+   221                           
+   222                           ; 1 bytes @ 0x30
+   223  000031                     	ds	13
+   224  00003E                     main@k:
+   225                           	opt stack 0
+   226                           
+   227                           ; 2 bytes @ 0x3D
+   228  00003E                     	ds	2
+   229  000040                     main@l:
+   230                           	opt stack 0
+   231                           
+   232                           ; 2 bytes @ 0x3F
+   233  000040                     	ds	2
+   234  000042                     main@front:
+   235                           	opt stack 0
+   236                           
+   237                           ; 2 bytes @ 0x41
+   238  000042                     	ds	2
+   239                           postinc0	equ	0xFEE
+   240                           wreg	equ	0xFE8
+   241                           
+   242 ;;
+   243 ;;Main: autosize = 0, tempsize = 13, incstack = 0, save=0
+   244 ;;
+   245 ;; *************** function _main *****************
+   246 ;; Defined at:
+   247 ;;		line 151 in file "hehe.c"
+   248 ;; Parameters:    Size  Location     Type
+   249 ;;		None
+   250 ;; Auto vars:     Size  Location     Type
+   251 ;;  l               2   63[COMRAM] int 
+   252 ;;  k               2   61[COMRAM] int 
+   253 ;;  front           2   65[COMRAM] int 
+   254 ;; Return value:  Size  Location     Type
+   255 ;;                  1    wreg      void 
+   256 ;; Registers used:
+   257 ;;		wreg, status,2, status,0, prodl, prodh, cstack
+   258 ;; Tracked objects:
+   259 ;;		On entry : 0/0
+   260 ;;		On exit  : 0/0
+   261 ;;		Unchanged: 0/0
+   262 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   263 ;;      Params:         0       0       0       0       0       0       0
+   264 ;;      Locals:         6       0       0       0       0       0       0
+   265 ;;      Temps:         13       0       0       0       0       0       0
+   266 ;;      Totals:        19       0       0       0       0       0       0
+   267 ;;Total ram usage:       19 bytes
+   268 ;; Hardware stack levels required when called:    2
+   269 ;; This function calls:
+   270 ;;		___wmul
+   271 ;;		_bitflip
+   272 ;;		_init
+   273 ;;		_led_send
+   274 ;; This function is called by:
+   275 ;;		Startup code after reset
+   276 ;; This function uses a non-reentrant model
+   277 ;;
+   278                           
+   279                           	psect	text0
+   280  007C4C                     __ptext0:
+   281                           	opt stack 0
+   282  007C4C                     _main:
+   283                           	opt stack 29
+   284                           
+   285                           ;hehe.c: 152: init();
+   286                           
+   287                           ;incstack = 0
+   288  007C4C  ECF3  F03D         	call	_init	;wreg free
+   289                           
+   290                           ;hehe.c: 153: tmp1=bitflip(led.g);
+   291  007C50  5059               	movf	_led+2,w,c
+   292  007C52  ECC6  F03D         	call	_bitflip
+   293  007C56  5001               	movf	?_bitflip,w,c
+   294  007C58  6E52               	movwf	_tmp1,c
+   295                           
+   296                           ;hehe.c: 154: tmp2=bitflip(led.r);
+   297  007C5A  5057               	movf	_led,w,c
+   298  007C5C  ECC6  F03D         	call	_bitflip
+   299  007C60  5001               	movf	?_bitflip,w,c
+   300  007C62  6E51               	movwf	_tmp2,c
+   301                           
+   302                           ;hehe.c: 155: tmp3=bitflip(led.b);
+   303  007C64  5058               	movf	_led+1,w,c
+   304  007C66  ECC6  F03D         	call	_bitflip
+   305  007C6A  5001               	movf	?_bitflip,w,c
+   306  007C6C  6E50               	movwf	_tmp3,c
+   307                           
+   308                           ;hehe.c: 157: int front = 0;
+   309  007C6E  0E00               	movlw	0
+   310  007C70  6E43               	movwf	main@front+1,c
+   311  007C72  0E00               	movlw	0
+   312  007C74  6E42               	movwf	main@front,c
+   313  007C76                     l70:
+   314  007C76  0004               	clrwdt		;# 
+   315                           
+   316                           ;hehe.c: 161: GIE = 0; while (GIE);
+   317  007C78  9EF2               	bcf	intcon,7,c	;volatile
+   318  007C7A  BEF2               	btfsc	intcon,7,c	;volatile
+   319  007C7C  D7FE               	goto	l72
+   320                           
+   321                           ;hehe.c: 162: if(front > ledlength -lednum)
+   322  007C7E  C042  F031         	movff	main@front,??_main
+   323  007C82  C043  F032         	movff	main@front+1,??_main+1
+   324  007C86  0E00               	movlw	0
+   325  007C88  BE32               	btfsc	(??_main+1)& (0+255),7,c
+   326  007C8A  0EFF               	movlw	255
+   327  007C8C  6E33               	movwf	(??_main+2)& (0+255),c
+   328  007C8E  6E34               	movwf	(??_main+3)& (0+255),c
+   329  007C90  C04E  F035         	movff	_lednum,??_main+4
+   330  007C94  C04F  F036         	movff	_lednum+1,??_main+5
+   331  007C98  0E00               	movlw	0
+   332  007C9A  BE36               	btfsc	(??_main+5)& (0+255),7,c
+   333  007C9C  0EFF               	movlw	255
+   334  007C9E  6E37               	movwf	(??_main+6)& (0+255),c
+   335  007CA0  6E38               	movwf	(??_main+7)& (0+255),c
+   336  007CA2  1E35               	comf	??_main+4,f,c
+   337  007CA4  1E36               	comf	??_main+5,f,c
+   338  007CA6  1E37               	comf	??_main+6,f,c
+   339  007CA8  1E38               	comf	??_main+7,f,c
+   340  007CAA  2A35               	incf	??_main+4,f,c
+   341  007CAC  0E00               	movlw	0
+   342  007CAE  2236               	addwfc	??_main+5,f,c
+   343  007CB0  2237               	addwfc	??_main+6,f,c
+   344  007CB2  2238               	addwfc	??_main+7,f,c
+   345  007CB4  5048               	movf	_ledlength,w,c
+   346  007CB6  2435               	addwf	??_main+4,w,c
+   347  007CB8  6E39               	movwf	(??_main+8)& (0+255),c
+   348  007CBA  5049               	movf	_ledlength+1,w,c
+   349  007CBC  2036               	addwfc	??_main+5,w,c
+   350  007CBE  6E3A               	movwf	(??_main+9)& (0+255),c
+   351  007CC0  504A               	movf	_ledlength+2,w,c
+   352  007CC2  2037               	addwfc	??_main+6,w,c
+   353  007CC4  6E3B               	movwf	(??_main+10)& (0+255),c
+   354  007CC6  504B               	movf	_ledlength+3,w,c
+   355  007CC8  2038               	addwfc	??_main+7,w,c
+   356  007CCA  6E3C               	movwf	(??_main+11)& (0+255),c
+   357  007CCC  5031               	movf	??_main,w,c
+   358  007CCE  5C39               	subwf	??_main+8,w,c
+   359  007CD0  5032               	movf	??_main+1,w,c
+   360  007CD2  583A               	subwfb	??_main+9,w,c
+   361  007CD4  5033               	movf	??_main+2,w,c
+   362  007CD6  583B               	subwfb	??_main+10,w,c
+   363  007CD8  503C               	movf	??_main+11,w,c
+   364  007CDA  0A80               	xorlw	128
+   365  007CDC  6E3D               	movwf	(??_main+12)& (0+255),c
+   366  007CDE  5034               	movf	??_main+3,w,c
+   367  007CE0  0A80               	xorlw	128
+   368  007CE2  583D               	subwfb	(??_main+12)& (0+255),w,c
+   369  007CE4  B0D8               	btfsc	status,0,c
+   370  007CE6  D01F               	goto	l74
+   371                           
+   372                           ;hehe.c: 163: {
+   373                           ;hehe.c: 164: front=0;
+   374  007CE8  0E00               	movlw	0
+   375  007CEA  6E43               	movwf	main@front+1,c
+   376  007CEC  0E00               	movlw	0
+   377  007CEE  6E42               	movwf	main@front,c
+   378                           
+   379                           ;hehe.c: 165: isFlow=0;
+   380  007CF0  0E00               	movlw	0
+   381  007CF2  6E5B               	movwf	_isFlow+1,c
+   382  007CF4  0E00               	movlw	0
+   383  007CF6  6E5A               	movwf	_isFlow,c
+   384                           
+   385                           ;hehe.c: 166: lednum=1;
+   386  007CF8  0E00               	movlw	0
+   387  007CFA  6E4F               	movwf	_lednum+1,c
+   388  007CFC  0E01               	movlw	1
+   389  007CFE  6E4E               	movwf	_lednum,c
+   390                           
+   391                           ;hehe.c: 167: lednum_24= lednum*24;
+   392  007D00  C04E  F001         	movff	_lednum,___wmul@multiplier
+   393  007D04  C04F  F002         	movff	_lednum+1,___wmul@multiplier+1
+   394  007D08  0E00               	movlw	0
+   395  007D0A  6E04               	movwf	___wmul@multiplicand+1,c
+   396  007D0C  0E18               	movlw	24
+   397  007D0E  6E03               	movwf	___wmul@multiplicand,c
+   398  007D10  EC88  F03D         	call	___wmul	;wreg free
+   399  007D14  C001  F044         	movff	?___wmul,_lednum_24
+   400  007D18  C002  F045         	movff	?___wmul+1,_lednum_24+1
+   401  007D1C  0E00               	movlw	0
+   402  007D1E  BE45               	btfsc	_lednum_24+1,7,c
+   403  007D20  0EFF               	movlw	-1
+   404  007D22  6E46               	movwf	_lednum_24+2,c
+   405  007D24  6E47               	movwf	_lednum_24+3,c
+   406  007D26                     l74:
+   407                           
+   408                           ;hehe.c: 168: }
+   409                           ;hehe.c: 169: led_send(front);
+   410  007D26  C042  F00D         	movff	main@front,led_send@front
+   411  007D2A  C043  F00E         	movff	main@front+1,led_send@front+1
+   412  007D2E  ECEA  F03E         	call	_led_send	;wreg free
+   413                           
+   414                           ;hehe.c: 170: if(isFlow){
+   415  007D32  505A               	movf	_isFlow,w,c
+   416  007D34  105B               	iorwf	_isFlow+1,w,c
+   417  007D36  B4D8               	btfsc	status,2,c
+   418  007D38  D002               	goto	l75
+   419                           
+   420                           ;hehe.c: 171: front++;
+   421  007D3A  4A42               	infsnz	main@front,f,c
+   422  007D3C  2A43               	incf	main@front+1,f,c
+   423  007D3E                     l75:
+   424                           
+   425                           ;hehe.c: 172: }
+   426                           ;hehe.c: 173: if(lednum!=ledmax)
+   427  007D3E  504C               	movf	_ledmax,w,c
+   428  007D40  184E               	xorwf	_lednum,w,c
+   429  007D42  E104               	bnz	u340
+   430  007D44  504D               	movf	_ledmax+1,w,c
+   431  007D46  184F               	xorwf	_lednum+1,w,c
+   432  007D48  B4D8               	btfsc	status,2,c
+   433  007D4A  D015               	goto	l76
+   434  007D4C                     u340:
+   435                           
+   436                           ;hehe.c: 174: {
+   437                           ;hehe.c: 175: lednum++;
+   438  007D4C  4A4E               	infsnz	_lednum,f,c
+   439  007D4E  2A4F               	incf	_lednum+1,f,c
+   440                           
+   441                           ;hehe.c: 176: lednum_24= lednum*24;
+   442  007D50  C04E  F001         	movff	_lednum,___wmul@multiplier
+   443  007D54  C04F  F002         	movff	_lednum+1,___wmul@multiplier+1
+   444  007D58  0E00               	movlw	0
+   445  007D5A  6E04               	movwf	___wmul@multiplicand+1,c
+   446  007D5C  0E18               	movlw	24
+   447  007D5E  6E03               	movwf	___wmul@multiplicand,c
+   448  007D60  EC88  F03D         	call	___wmul	;wreg free
+   449  007D64  C001  F044         	movff	?___wmul,_lednum_24
+   450  007D68  C002  F045         	movff	?___wmul+1,_lednum_24+1
+   451  007D6C  0E00               	movlw	0
+   452  007D6E  BE45               	btfsc	_lednum_24+1,7,c
+   453  007D70  0EFF               	movlw	-1
+   454  007D72  6E46               	movwf	_lednum_24+2,c
+   455  007D74  6E47               	movwf	_lednum_24+3,c
+   456  007D76                     l76:
+   457                           
+   458                           ;hehe.c: 177: }
+   459                           ;hehe.c: 178: if(lednum==ledmax)
+   460  007D76  504C               	movf	_ledmax,w,c
+   461  007D78  184E               	xorwf	_lednum,w,c
+   462  007D7A  E108               	bnz	l77
+   463  007D7C  504D               	movf	_ledmax+1,w,c
+   464  007D7E  184F               	xorwf	_lednum+1,w,c
+   465  007D80  A4D8               	btfss	status,2,c
+   466  007D82  D004               	goto	l77
+   467                           
+   468                           ;hehe.c: 179: {
+   469                           ;hehe.c: 180: isFlow=1;
+   470  007D84  0E00               	movlw	0
+   471  007D86  6E5B               	movwf	_isFlow+1,c
+   472  007D88  0E01               	movlw	1
+   473  007D8A  6E5A               	movwf	_isFlow,c
+   474  007D8C                     l77:
+   475                           
+   476                           ;hehe.c: 181: }
+   477                           ;hehe.c: 183: int k = 10 , l = 255;
+   478  007D8C  0E00               	movlw	0
+   479  007D8E  6E3F               	movwf	main@k+1,c
+   480  007D90  0E0A               	movlw	10
+   481  007D92  6E3E               	movwf	main@k,c
+   482  007D94  0E00               	movlw	0
+   483  007D96  6E41               	movwf	main@l+1,c
+   484  007D98  6840               	setf	main@l,c
+   485                           
+   486                           ;hehe.c: 184: while( k > 0 ) {
+   487  007D9A  D011               	goto	l78
+   488  007D9C                     l981:
+   489                           
+   490                           ;hehe.c: 185: l = 255;
+   491  007D9C  0E00               	movlw	0
+   492  007D9E  6E41               	movwf	main@l+1,c
+   493  007DA0  6840               	setf	main@l,c
+   494                           
+   495                           ;hehe.c: 186: while( l > 0) {
+   496  007DA2  D003               	goto	l80
+   497  007DA4                     l983:
+   498                           
+   499                           ;hehe.c: 187: l--;
+   500  007DA4  0640               	decf	main@l,f,c
+   501  007DA6  A0D8               	btfss	status,0,c
+   502  007DA8  0641               	decf	main@l+1,f,c
+   503  007DAA                     l80:
+   504  007DAA  BE41               	btfsc	main@l+1,7,c
+   505  007DAC  D005               	goto	u360
+   506  007DAE  5041               	movf	main@l+1,w,c
+   507  007DB0  E1F9               	bnz	l983
+   508  007DB2  0440               	decf	main@l,w,c
+   509  007DB4  B0D8               	btfsc	status,0,c
+   510  007DB6  D7F6               	goto	l81
+   511  007DB8                     u360:
+   512                           
+   513                           ;hehe.c: 188: }
+   514                           ;hehe.c: 189: k--;
+   515  007DB8  063E               	decf	main@k,f,c
+   516  007DBA  A0D8               	btfss	status,0,c
+   517  007DBC  063F               	decf	main@k+1,f,c
+   518  007DBE                     l78:
+   519  007DBE  BE3F               	btfsc	main@k+1,7,c
+   520  007DC0  D005               	goto	u370
+   521  007DC2  503F               	movf	main@k+1,w,c
+   522  007DC4  E1EB               	bnz	l981
+   523  007DC6  043E               	decf	main@k,w,c
+   524  007DC8  B0D8               	btfsc	status,0,c
+   525  007DCA  D7E8               	goto	l79
+   526  007DCC                     u370:
+   527                           
+   528                           ;hehe.c: 190: }
+   529                           ;hehe.c: 192: GIE = 1; while (!GIE);
+   530  007DCC  8EF2               	bsf	intcon,7,c	;volatile
+   531  007DCE  BEF2               	btfsc	intcon,7,c	;volatile
+   532  007DD0  D752               	goto	l70
+   533  007DD2  D7FD               	goto	l85
+   534  007DD4                     __end_of_main:
+   535                           	opt stack 0
+   536                           intcon	equ	0xFF2
+   537                           postinc0	equ	0xFEE
+   538                           wreg	equ	0xFE8
+   539                           status	equ	0xFD8
+   540                           
+   541 ;; *************** function _led_send *****************
+   542 ;; Defined at:
+   543 ;;		line 36 in file "hehe.c"
+   544 ;; Parameters:    Size  Location     Type
+   545 ;;  front           2   12[COMRAM] int 
+   546 ;; Auto vars:     Size  Location     Type
+   547 ;;  i               4   34[COMRAM] long 
+   548 ;;  i               4   30[COMRAM] long 
+   549 ;;  i               4   26[COMRAM] long 
+   550 ;;  val             4   42[COMRAM] long 
+   551 ;;  back_24         4   22[COMRAM] long 
+   552 ;;  front_24        4   18[COMRAM] long 
+   553 ;;  buf             2   46[COMRAM] int 
+   554 ;;  l               2   40[COMRAM] int 
+   555 ;;  k               2   38[COMRAM] int 
+   556 ;; Return value:  Size  Location     Type
+   557 ;;                  1    wreg      void 
+   558 ;; Registers used:
+   559 ;;		wreg, status,2, status,0, prodl, prodh, cstack
+   560 ;; Tracked objects:
+   561 ;;		On entry : 0/0
+   562 ;;		On exit  : 0/0
+   563 ;;		Unchanged: 0/0
+   564 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   565 ;;      Params:         2       0       0       0       0       0       0
+   566 ;;      Locals:        30       0       0       0       0       0       0
+   567 ;;      Temps:          4       0       0       0       0       0       0
+   568 ;;      Totals:        36       0       0       0       0       0       0
+   569 ;;Total ram usage:       36 bytes
+   570 ;; Hardware stack levels used:    1
+   571 ;; Hardware stack levels required when called:    1
+   572 ;; This function calls:
+   573 ;;		___lmul
+   574 ;;		___wmul
+   575 ;; This function is called by:
+   576 ;;		_main
+   577 ;; This function uses a non-reentrant model
+   578 ;;
+   579                           
+   580                           	psect	text1
+   581  007DD4                     __ptext1:
+   582                           	opt stack 0
+   583  007DD4                     _led_send:
+   584                           	opt stack 29
+   585                           
+   586                           ;hehe.c: 37: long int front_24 = front * 24;
+   587                           
+   588                           ;incstack = 0
+   589  007DD4  C00D  F001         	movff	led_send@front,___wmul@multiplier
+   590  007DD8  C00E  F002         	movff	led_send@front+1,___wmul@multiplier+1
+   591  007DDC  0E00               	movlw	0
+   592  007DDE  6E04               	movwf	___wmul@multiplicand+1,c
+   593  007DE0  0E18               	movlw	24
+   594  007DE2  6E03               	movwf	___wmul@multiplicand,c
+   595  007DE4  EC88  F03D         	call	___wmul	;wreg free
+   596  007DE8  C001  F013         	movff	?___wmul,led_send@front_24
+   597  007DEC  C002  F014         	movff	?___wmul+1,led_send@front_24+1
+   598  007DF0  0E00               	movlw	0
+   599  007DF2  BE14               	btfsc	led_send@front_24+1,7,c
+   600  007DF4  0EFF               	movlw	-1
+   601  007DF6  6E15               	movwf	led_send@front_24+2,c
+   602  007DF8  6E16               	movwf	led_send@front_24+3,c
+   603                           
+   604                           ;hehe.c: 38: int buf = 24;
+   605  007DFA  0E00               	movlw	0
+   606  007DFC  6E30               	movwf	led_send@buf+1,c
+   607  007DFE  0E18               	movlw	24
+   608  007E00  6E2F               	movwf	led_send@buf,c
+   609                           
+   610                           ;hehe.c: 39: long int val = (long int)tmp1;
+   611  007E02  5052               	movf	_tmp1,w,c
+   612  007E04  6E2B               	movwf	led_send@val,c
+   613  007E06  6A2C               	clrf	led_send@val+1,c
+   614  007E08  6A2D               	clrf	led_send@val+2,c
+   615  007E0A  6A2E               	clrf	led_send@val+3,c
+   616                           
+   617                           ;hehe.c: 40: long int back_24 = (ledlength - front ) * 24;
+   618  007E0C  C00D  F00F         	movff	led_send@front,??_led_send
+   619  007E10  C00E  F010         	movff	led_send@front+1,??_led_send+1
+   620  007E14  0E00               	movlw	0
+   621  007E16  BE10               	btfsc	(??_led_send+1)& (0+255),7,c
+   622  007E18  0EFF               	movlw	255
+   623  007E1A  6E11               	movwf	(??_led_send+2)& (0+255),c
+   624  007E1C  6E12               	movwf	(??_led_send+3)& (0+255),c
+   625  007E1E  1E0F               	comf	??_led_send,f,c
+   626  007E20  1E10               	comf	??_led_send+1,f,c
+   627  007E22  1E11               	comf	??_led_send+2,f,c
+   628  007E24  1E12               	comf	??_led_send+3,f,c
+   629  007E26  2A0F               	incf	??_led_send,f,c
+   630  007E28  0E00               	movlw	0
+   631  007E2A  2210               	addwfc	??_led_send+1,f,c
+   632  007E2C  2211               	addwfc	??_led_send+2,f,c
+   633  007E2E  2212               	addwfc	??_led_send+3,f,c
+   634  007E30  5048               	movf	_ledlength,w,c
+   635  007E32  240F               	addwf	??_led_send,w,c
+   636  007E34  6E01               	movwf	___lmul@multiplier,c
+   637  007E36  5049               	movf	_ledlength+1,w,c
+   638  007E38  2010               	addwfc	??_led_send+1,w,c
+   639  007E3A  6E02               	movwf	___lmul@multiplier+1,c
+   640  007E3C  504A               	movf	_ledlength+2,w,c
+   641  007E3E  2011               	addwfc	??_led_send+2,w,c
+   642  007E40  6E03               	movwf	___lmul@multiplier+2,c
+   643  007E42  504B               	movf	_ledlength+3,w,c
+   644  007E44  2012               	addwfc	??_led_send+3,w,c
+   645  007E46  6E04               	movwf	___lmul@multiplier+3,c
+   646  007E48  0E18               	movlw	24
+   647  007E4A  6E05               	movwf	___lmul@multiplicand,c
+   648  007E4C  0E00               	movlw	0
+   649  007E4E  6E06               	movwf	___lmul@multiplicand+1,c
+   650  007E50  0E00               	movlw	0
+   651  007E52  6E07               	movwf	___lmul@multiplicand+2,c
+   652  007E54  0E00               	movlw	0
+   653  007E56  6E08               	movwf	___lmul@multiplicand+3,c
+   654  007E58  EC9B  F03D         	call	___lmul	;wreg free
+   655  007E5C  C001  F017         	movff	?___lmul,led_send@back_24
+   656  007E60  C002  F018         	movff	?___lmul+1,led_send@back_24+1
+   657  007E64  C003  F019         	movff	?___lmul+2,led_send@back_24+2
+   658  007E68  C004  F01A         	movff	?___lmul+3,led_send@back_24+3
+   659                           
+   660                           ;hehe.c: 41: int k = 40 , l = 255;
+   661  007E6C  0E00               	movlw	0
+   662  007E6E  6E28               	movwf	led_send@k+1,c
+   663  007E70  0E28               	movlw	40
+   664  007E72  6E27               	movwf	led_send@k,c
+   665  007E74  0E00               	movlw	0
+   666  007E76  6E2A               	movwf	led_send@l+1,c
+   667  007E78  6829               	setf	led_send@l,c
+   668                           
+   669                           ;hehe.c: 42: while( k > 0 ) {
+   670  007E7A  D011               	goto	l37
+   671  007E7C                     l879:
+   672                           
+   673                           ;hehe.c: 43: l = 255;
+   674  007E7C  0E00               	movlw	0
+   675  007E7E  6E2A               	movwf	led_send@l+1,c
+   676  007E80  6829               	setf	led_send@l,c
+   677                           
+   678                           ;hehe.c: 44: while( l > 0) {
+   679  007E82  D003               	goto	l39
+   680  007E84                     l881:
+   681                           
+   682                           ;hehe.c: 45: l--;
+   683  007E84  0629               	decf	led_send@l,f,c
+   684  007E86  A0D8               	btfss	status,0,c
+   685  007E88  062A               	decf	led_send@l+1,f,c
+   686  007E8A                     l39:
+   687  007E8A  BE2A               	btfsc	led_send@l+1,7,c
+   688  007E8C  D005               	goto	u220
+   689  007E8E  502A               	movf	led_send@l+1,w,c
+   690  007E90  E1F9               	bnz	l881
+   691  007E92  0429               	decf	led_send@l,w,c
+   692  007E94  B0D8               	btfsc	status,0,c
+   693  007E96  D7F6               	goto	l40
+   694  007E98                     u220:
+   695                           
+   696                           ;hehe.c: 46: }
+   697                           ;hehe.c: 47: k--;
+   698  007E98  0627               	decf	led_send@k,f,c
+   699  007E9A  A0D8               	btfss	status,0,c
+   700  007E9C  0628               	decf	led_send@k+1,f,c
+   701  007E9E                     l37:
+   702  007E9E  BE28               	btfsc	led_send@k+1,7,c
+   703  007EA0  D005               	goto	u230
+   704  007EA2  5028               	movf	led_send@k+1,w,c
+   705  007EA4  E1EB               	bnz	l879
+   706  007EA6  0427               	decf	led_send@k,w,c
+   707  007EA8  B0D8               	btfsc	status,0,c
+   708  007EAA  D7E8               	goto	l38
+   709  007EAC                     u230:
+   710                           
+   711                           ;hehe.c: 48: }
+   712                           ;hehe.c: 50: for(long int i = 0; i < front_24; ++i){
+   713  007EAC  0E00               	movlw	0
+   714  007EAE  6E1B               	movwf	led_send@i,c
+   715  007EB0  0E00               	movlw	0
+   716  007EB2  6E1C               	movwf	led_send@i+1,c
+   717  007EB4  0E00               	movlw	0
+   718  007EB6  6E1D               	movwf	led_send@i+2,c
+   719  007EB8  0E00               	movlw	0
+   720  007EBA  6E1E               	movwf	led_send@i+3,c
+   721  007EBC  D011               	goto	l43
+   722  007EBE                     l44:
+   723                           
+   724                           ;hehe.c: 51: PORTDbits.RD0 = 1;
+   725  007EBE  8083               	bsf	3971,0,c	;volatile
+   726                           
+   727                           ;hehe.c: 52: PORTDbits.RD0 = 0;
+   728  007EC0  9083               	bcf	3971,0,c	;volatile
+   729                           
+   730                           ;hehe.c: 53: __nop();
+   731  007EC2  F000               	nop	
+   732                           
+   733                           ;hehe.c: 54: __nop();
+   734  007EC4  F000               	nop	
+   735                           
+   736                           ;hehe.c: 55: __nop();
+   737  007EC6  F000               	nop	
+   738                           
+   739                           ;hehe.c: 56: __nop();
+   740  007EC8  F000               	nop	
+   741                           
+   742                           ;hehe.c: 57: __nop();
+   743  007ECA  F000               	nop	
+   744                           
+   745                           ;hehe.c: 58: __nop();
+   746  007ECC  F000               	nop	
+   747                           
+   748                           ;hehe.c: 59: __nop();
+   749  007ECE  F000               	nop	
+   750                           
+   751                           ;hehe.c: 60: __nop();
+   752  007ED0  F000               	nop	
+   753                           
+   754                           ;hehe.c: 61: __nop();
+   755  007ED2  F000               	nop	
+   756  007ED4  0E01               	movlw	1
+   757  007ED6  261B               	addwf	led_send@i,f,c
+   758  007ED8  0E00               	movlw	0
+   759  007EDA  221C               	addwfc	led_send@i+1,f,c
+   760  007EDC  221D               	addwfc	led_send@i+2,f,c
+   761  007EDE  221E               	addwfc	led_send@i+3,f,c
+   762  007EE0                     l43:
+   763  007EE0  5013               	movf	led_send@front_24,w,c
+   764  007EE2  5C1B               	subwf	led_send@i,w,c
+   765  007EE4  5014               	movf	led_send@front_24+1,w,c
+   766  007EE6  581C               	subwfb	led_send@i+1,w,c
+   767  007EE8  5015               	movf	led_send@front_24+2,w,c
+   768  007EEA  581D               	subwfb	led_send@i+2,w,c
+   769  007EEC  501E               	movf	led_send@i+3,w,c
+   770  007EEE  0A80               	xorlw	128
+   771  007EF0  6E0F               	movwf	??_led_send& (0+255),c
+   772  007EF2  5016               	movf	led_send@front_24+3,w,c
+   773  007EF4  0A80               	xorlw	128
+   774  007EF6  580F               	subwfb	??_led_send& (0+255),w,c
+   775  007EF8  A0D8               	btfss	status,0,c
+   776  007EFA  D7E1               	goto	l44
+   777                           
+   778                           ;hehe.c: 62: }
+   779                           ;hehe.c: 64: for(long int i = 0; i < lednum_24 ; i++ ){
+   780  007EFC  0E00               	movlw	0
+   781  007EFE  6E1F               	movwf	led_send@i_217,c
+   782  007F00  0E00               	movlw	0
+   783  007F02  6E20               	movwf	led_send@i_217+1,c
+   784  007F04  0E00               	movlw	0
+   785  007F06  6E21               	movwf	led_send@i_217+2,c
+   786  007F08  0E00               	movlw	0
+   787  007F0A  6E22               	movwf	led_send@i_217+3,c
+   788  007F0C  D042               	goto	l46
+   789  007F0E                     
+   790                           ;hehe.c: 66: if(buf== 0){
+   791  007F0E  502F               	movf	led_send@buf,w,c
+   792  007F10  1030               	iorwf	led_send@buf+1,w,c
+   793  007F12  A4D8               	btfss	status,2,c
+   794  007F14  D006               	goto	l48
+   795                           
+   796                           ;hehe.c: 67: buf = 24;
+   797  007F16  0E00               	movlw	0
+   798  007F18  6E30               	movwf	led_send@buf+1,c
+   799  007F1A  0E18               	movlw	24
+   800  007F1C  6E2F               	movwf	led_send@buf,c
+   801                           
+   802                           ;hehe.c: 68: val = (long int)tmp1;
+   803  007F1E  5052               	movf	_tmp1,w,c
+   804  007F20  D00D               	goto	L2
+   805  007F22                     l48:
+   806                           
+   807                           ;hehe.c: 70: else if(buf== 16){
+   808  007F22  0E10               	movlw	16
+   809  007F24  182F               	xorwf	led_send@buf,w,c
+   810  007F26  1030               	iorwf	led_send@buf+1,w,c
+   811  007F28  A4D8               	btfss	status,2,c
+   812  007F2A  D002               	goto	l50
+   813                           
+   814                           ;hehe.c: 72: val = (long int)tmp2;
+   815  007F2C  5051               	movf	_tmp2,w,c
+   816  007F2E  D006               	goto	L2
+   817  007F30                     l50:
+   818                           
+   819                           ;hehe.c: 74: else if(buf== 8){
+   820  007F30  0E08               	movlw	8
+   821  007F32  182F               	xorwf	led_send@buf,w,c
+   822  007F34  1030               	iorwf	led_send@buf+1,w,c
+   823  007F36  A4D8               	btfss	status,2,c
+   824  007F38  D005               	goto	l52
+   825                           
+   826                           ;hehe.c: 75: val = (long int)tmp3;
+   827  007F3A  5050               	movf	_tmp3,w,c
+   828  007F3C                     L2:
+   829  007F3C  6E2B               	movwf	led_send@val,c
+   830  007F3E  6A2C               	clrf	led_send@val+1,c
+   831  007F40  6A2D               	clrf	led_send@val+2,c
+   832  007F42  6A2E               	clrf	led_send@val+3,c
+   833  007F44                     l52:
+   834                           
+   835                           ;hehe.c: 76: }
+   836                           ;hehe.c: 78: if (val & 1) {
+   837  007F44  A02B               	btfss	led_send@val,0,c
+   838  007F46  D00C               	goto	l53
+   839                           
+   840                           ;hehe.c: 79: PORTDbits.RD0 = 1;
+   841  007F48  8083               	bsf	3971,0,c	;volatile
+   842                           
+   843                           ;hehe.c: 80: __nop();
+   844  007F4A  F000               	nop	
+   845                           
+   846                           ;hehe.c: 81: __nop();
+   847  007F4C  F000               	nop	
+   848                           
+   849                           ;hehe.c: 82: __nop();
+   850  007F4E  F000               	nop	
+   851                           
+   852                           ;hehe.c: 83: __nop();
+   853  007F50  F000               	nop	
+   854                           
+   855                           ;hehe.c: 84: __nop();
+   856  007F52  F000               	nop	
+   857                           
+   858                           ;hehe.c: 85: __nop();
+   859  007F54  F000               	nop	
+   860                           
+   861                           ;hehe.c: 86: __nop();
+   862  007F56  F000               	nop	
+   863                           
+   864                           ;hehe.c: 87: __nop();
+   865  007F58  F000               	nop	
+   866                           
+   867                           ;hehe.c: 88: __nop();
+   868  007F5A  F000               	nop	
+   869                           
+   870                           ;hehe.c: 89: PORTDbits.RD0 = 0;
+   871  007F5C  9083               	bcf	3971,0,c	;volatile
+   872                           
+   873                           ;hehe.c: 91: } else {
+   874  007F5E  D00B               	goto	l54
+   875  007F60                     l53:
+   876                           
+   877                           ;hehe.c: 92: PORTDbits.RD0 = 1;
+   878  007F60  8083               	bsf	3971,0,c	;volatile
+   879                           
+   880                           ;hehe.c: 93: PORTDbits.RD0 = 0;
+   881  007F62  9083               	bcf	3971,0,c	;volatile
+   882                           
+   883                           ;hehe.c: 94: __nop();
+   884  007F64  F000               	nop	
+   885                           
+   886                           ;hehe.c: 95: __nop();
+   887  007F66  F000               	nop	
+   888                           
+   889                           ;hehe.c: 96: __nop();
+   890  007F68  F000               	nop	
+   891                           
+   892                           ;hehe.c: 97: __nop();
+   893  007F6A  F000               	nop	
+   894                           
+   895                           ;hehe.c: 98: __nop();
+   896  007F6C  F000               	nop	
+   897                           
+   898                           ;hehe.c: 99: __nop();
+   899  007F6E  F000               	nop	
+   900                           
+   901                           ;hehe.c: 100: __nop();
+   902  007F70  F000               	nop	
+   903                           
+   904                           ;hehe.c: 101: __nop();
+   905  007F72  F000               	nop	
+   906                           
+   907                           ;hehe.c: 102: __nop();
+   908  007F74  F000               	nop	
+   909  007F76                     l54:
+   910                           
+   911                           ;hehe.c: 103: }
+   912                           ;hehe.c: 104: val >>= (unsigned char)1;
+   913  007F76  342E               	rlcf	led_send@val+3,w,c
+   914  007F78  322E               	rrcf	led_send@val+3,f,c
+   915  007F7A  322D               	rrcf	led_send@val+2,f,c
+   916  007F7C  322C               	rrcf	led_send@val+1,f,c
+   917  007F7E  322B               	rrcf	led_send@val,f,c
+   918                           
+   919                           ;hehe.c: 105: buf--;
+   920  007F80  062F               	decf	led_send@buf,f,c
+   921  007F82  A0D8               	btfss	status,0,c
+   922  007F84  0630               	decf	led_send@buf+1,f,c
+   923  007F86  0E01               	movlw	1
+   924  007F88  261F               	addwf	led_send@i_217,f,c
+   925  007F8A  0E00               	movlw	0
+   926  007F8C  2220               	addwfc	led_send@i_217+1,f,c
+   927  007F8E  2221               	addwfc	led_send@i_217+2,f,c
+   928  007F90  2222               	addwfc	led_send@i_217+3,f,c
+   929  007F92                     l46:
+   930  007F92  5044               	movf	_lednum_24,w,c
+   931  007F94  5C1F               	subwf	led_send@i_217,w,c
+   932  007F96  5045               	movf	_lednum_24+1,w,c
+   933  007F98  5820               	subwfb	led_send@i_217+1,w,c
+   934  007F9A  5046               	movf	_lednum_24+2,w,c
+   935  007F9C  5821               	subwfb	led_send@i_217+2,w,c
+   936  007F9E  5022               	movf	led_send@i_217+3,w,c
+   937  007FA0  0A80               	xorlw	128
+   938  007FA2  6E0F               	movwf	??_led_send& (0+255),c
+   939  007FA4  5047               	movf	_lednum_24+3,w,c
+   940  007FA6  0A80               	xorlw	128
+   941  007FA8  580F               	subwfb	??_led_send& (0+255),w,c
+   942  007FAA  A0D8               	btfss	status,0,c
+   943  007FAC  D7B0               	goto	l47
+   944                           
+   945                           ;hehe.c: 106: }
+   946                           ;hehe.c: 108: for(long int i = 0; i < back_24; ++i){
+   947  007FAE  0E00               	movlw	0
+   948  007FB0  6E23               	movwf	led_send@i_218,c
+   949  007FB2  0E00               	movlw	0
+   950  007FB4  6E24               	movwf	led_send@i_218+1,c
+   951  007FB6  0E00               	movlw	0
+   952  007FB8  6E25               	movwf	led_send@i_218+2,c
+   953  007FBA  0E00               	movlw	0
+   954  007FBC  6E26               	movwf	led_send@i_218+3,c
+   955  007FBE  D011               	goto	l56
+   956  007FC0                     l57:
+   957                           
+   958                           ;hehe.c: 109: PORTDbits.RD0 = 1;
+   959  007FC0  8083               	bsf	3971,0,c	;volatile
+   960                           
+   961                           ;hehe.c: 110: PORTDbits.RD0 = 0;
+   962  007FC2  9083               	bcf	3971,0,c	;volatile
+   963                           
+   964                           ;hehe.c: 111: __nop();
+   965  007FC4  F000               	nop	
+   966                           
+   967                           ;hehe.c: 112: __nop();
+   968  007FC6  F000               	nop	
+   969                           
+   970                           ;hehe.c: 113: __nop();
+   971  007FC8  F000               	nop	
+   972                           
+   973                           ;hehe.c: 114: __nop();
+   974  007FCA  F000               	nop	
+   975                           
+   976                           ;hehe.c: 115: __nop();
+   977  007FCC  F000               	nop	
+   978                           
+   979                           ;hehe.c: 116: __nop();
+   980  007FCE  F000               	nop	
+   981                           
+   982                           ;hehe.c: 117: __nop();
+   983  007FD0  F000               	nop	
+   984                           
+   985                           ;hehe.c: 118: __nop();
+   986  007FD2  F000               	nop	
+   987                           
+   988                           ;hehe.c: 119: __nop();
+   989  007FD4  F000               	nop	
+   990  007FD6  0E01               	movlw	1
+   991  007FD8  2623               	addwf	led_send@i_218,f,c
+   992  007FDA  0E00               	movlw	0
+   993  007FDC  2224               	addwfc	led_send@i_218+1,f,c
+   994  007FDE  2225               	addwfc	led_send@i_218+2,f,c
+   995  007FE0  2226               	addwfc	led_send@i_218+3,f,c
+   996  007FE2                     l56:
+   997  007FE2  5017               	movf	led_send@back_24,w,c
+   998  007FE4  5C23               	subwf	led_send@i_218,w,c
+   999  007FE6  5018               	movf	led_send@back_24+1,w,c
+  1000  007FE8  5824               	subwfb	led_send@i_218+1,w,c
+  1001  007FEA  5019               	movf	led_send@back_24+2,w,c
+  1002  007FEC  5825               	subwfb	led_send@i_218+2,w,c
+  1003  007FEE  5026               	movf	led_send@i_218+3,w,c
+  1004  007FF0  0A80               	xorlw	128
+  1005  007FF2  6E0F               	movwf	??_led_send& (0+255),c
+  1006  007FF4  501A               	movf	led_send@back_24+3,w,c
+  1007  007FF6  0A80               	xorlw	128
+  1008  007FF8  580F               	subwfb	??_led_send& (0+255),w,c
+  1009  007FFA  B0D8               	btfsc	status,0,c
+  1010  007FFC  0012               	return	
+  1011  007FFE  D7E0               	goto	l57
+  1012  008000                     __end_of_led_send:
+  1013                           	opt stack 0
+  1014                           intcon	equ	0xFF2
+  1015                           postinc0	equ	0xFEE
+  1016                           wreg	equ	0xFE8
+  1017                           status	equ	0xFD8
+  1018                           
+  1019 ;; *************** function ___lmul *****************
+  1020 ;; Defined at:
+  1021 ;;		line 15 in file "C:\Program Files (x86)\Microchip\xc8\v1.44\sources\common\Umul32.c"
+  1022 ;; Parameters:    Size  Location     Type
+  1023 ;;  multiplier      4    0[COMRAM] unsigned long 
+  1024 ;;  multiplicand    4    4[COMRAM] unsigned long 
+  1025 ;; Auto vars:     Size  Location     Type
+  1026 ;;  product         4    8[COMRAM] unsigned long 
+  1027 ;; Return value:  Size  Location     Type
+  1028 ;;                  4    0[COMRAM] unsigned long 
+  1029 ;; Registers used:
+  1030 ;;		wreg, status,2, status,0
+  1031 ;; Tracked objects:
+  1032 ;;		On entry : 0/0
+  1033 ;;		On exit  : 0/0
+  1034 ;;		Unchanged: 0/0
+  1035 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+  1036 ;;      Params:         8       0       0       0       0       0       0
+  1037 ;;      Locals:         4       0       0       0       0       0       0
+  1038 ;;      Temps:          0       0       0       0       0       0       0
+  1039 ;;      Totals:        12       0       0       0       0       0       0
+  1040 ;;Total ram usage:       12 bytes
+  1041 ;; Hardware stack levels used:    1
+  1042 ;; This function calls:
+  1043 ;;		Nothing
+  1044 ;; This function is called by:
+  1045 ;;		_led_send
+  1046 ;; This function uses a non-reentrant model
+  1047 ;;
+  1048                           
+  1049                           	psect	text2
+  1050  007B36                     __ptext2:
+  1051                           	opt stack 0
+  1052  007B36                     ___lmul:
+  1053                           	opt stack 29
+  1054                           
+  1055                           ;incstack = 0
+  1056  007B36  0E00               	movlw	0
+  1057  007B38  6E09               	movwf	___lmul@product,c
+  1058  007B3A  0E00               	movlw	0
+  1059  007B3C  6E0A               	movwf	___lmul@product+1,c
+  1060  007B3E  0E00               	movlw	0
+  1061  007B40  6E0B               	movwf	___lmul@product+2,c
+  1062  007B42  0E00               	movlw	0
+  1063  007B44  6E0C               	movwf	___lmul@product+3,c
+  1064  007B46  A001               	btfss	___lmul@multiplier,0,c
+  1065  007B48  D008               	goto	l102
+  1066  007B4A  5005               	movf	___lmul@multiplicand,w,c
+  1067  007B4C  2609               	addwf	___lmul@product,f,c
+  1068  007B4E  5006               	movf	___lmul@multiplicand+1,w,c
+  1069  007B50  220A               	addwfc	___lmul@product+1,f,c
+  1070  007B52  5007               	movf	___lmul@multiplicand+2,w,c
+  1071  007B54  220B               	addwfc	___lmul@product+2,f,c
+  1072  007B56  5008               	movf	___lmul@multiplicand+3,w,c
+  1073  007B58  220C               	addwfc	___lmul@product+3,f,c
+  1074  007B5A                     l102:
+  1075  007B5A  90D8               	bcf	status,0,c
+  1076  007B5C  3605               	rlcf	___lmul@multiplicand,f,c
+  1077  007B5E  3606               	rlcf	___lmul@multiplicand+1,f,c
+  1078  007B60  3607               	rlcf	___lmul@multiplicand+2,f,c
+  1079  007B62  3608               	rlcf	___lmul@multiplicand+3,f,c
+  1080  007B64  90D8               	bcf	status,0,c
+  1081  007B66  3204               	rrcf	___lmul@multiplier+3,f,c
+  1082  007B68  3203               	rrcf	___lmul@multiplier+2,f,c
+  1083  007B6A  3202               	rrcf	___lmul@multiplier+1,f,c
+  1084  007B6C  3201               	rrcf	___lmul@multiplier,f,c
+  1085  007B6E  5001               	movf	___lmul@multiplier,w,c
+  1086  007B70  1002               	iorwf	___lmul@multiplier+1,w,c
+  1087  007B72  1003               	iorwf	___lmul@multiplier+2,w,c
+  1088  007B74  1004               	iorwf	___lmul@multiplier+3,w,c
+  1089  007B76  A4D8               	btfss	status,2,c
+  1090  007B78  D7E6               	goto	l101
+  1091  007B7A  C009  F001         	movff	___lmul@product,?___lmul
+  1092  007B7E  C00A  F002         	movff	___lmul@product+1,?___lmul+1
+  1093  007B82  C00B  F003         	movff	___lmul@product+2,?___lmul+2
+  1094  007B86  C00C  F004         	movff	___lmul@product+3,?___lmul+3
+  1095  007B8A  0012               	return		;funcret
+  1096  007B8C                     __end_of___lmul:
+  1097                           	opt stack 0
+  1098                           intcon	equ	0xFF2
+  1099                           postinc0	equ	0xFEE
+  1100                           wreg	equ	0xFE8
+  1101                           status	equ	0xFD8
+  1102                           
+  1103 ;; *************** function _init *****************
+  1104 ;; Defined at:
+  1105 ;;		line 131 in file "hehe.c"
+  1106 ;; Parameters:    Size  Location     Type
+  1107 ;;		None
+  1108 ;; Auto vars:     Size  Location     Type
+  1109 ;;		None
+  1110 ;; Return value:  Size  Location     Type
+  1111 ;;                  1    wreg      void 
+  1112 ;; Registers used:
+  1113 ;;		wreg, status,2, status,0, prodl, prodh, cstack
+  1114 ;; Tracked objects:
+  1115 ;;		On entry : 0/0
+  1116 ;;		On exit  : 0/0
+  1117 ;;		Unchanged: 0/0
+  1118 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+  1119 ;;      Params:         0       0       0       0       0       0       0
+  1120 ;;      Locals:         0       0       0       0       0       0       0
+  1121 ;;      Temps:          0       0       0       0       0       0       0
+  1122 ;;      Totals:         0       0       0       0       0       0       0
+  1123 ;;Total ram usage:        0 bytes
+  1124 ;; Hardware stack levels used:    1
+  1125 ;; Hardware stack levels required when called:    1
+  1126 ;; This function calls:
+  1127 ;;		___wmul
+  1128 ;; This function is called by:
+  1129 ;;		_main
+  1130 ;; This function uses a non-reentrant model
+  1131 ;;
+  1132                           
+  1133                           	psect	text3
+  1134  007BE6                     __ptext3:
+  1135                           	opt stack 0
+  1136  007BE6                     _init:
+  1137                           	opt stack 29
+  1138                           
+  1139                           ;hehe.c: 132: OSCCONbits.IRCF2 = 1;
+  1140                           
+  1141                           ;incstack = 0
+  1142  007BE6  8CD3               	bsf	4051,6,c	;volatile
+  1143                           
+  1144                           ;hehe.c: 133: OSCCONbits.IRCF1 = 1;
+  1145  007BE8  8AD3               	bsf	4051,5,c	;volatile
+  1146                           
+  1147                           ;hehe.c: 134: OSCCONbits.IRCF0 = 1;
+  1148  007BEA  88D3               	bsf	4051,4,c	;volatile
+  1149                           
+  1150                           ;hehe.c: 135: OSCTUNEbits.PLLEN=1;
+  1151  007BEC  8C9B               	bsf	3995,6,c	;volatile
+  1152                           
+  1153                           ;hehe.c: 137: ledlength=200;
+  1154  007BEE  0EC8               	movlw	200
+  1155  007BF0  6E48               	movwf	_ledlength,c
+  1156  007BF2  0E00               	movlw	0
+  1157  007BF4  6E49               	movwf	_ledlength+1,c
+  1158  007BF6  0E00               	movlw	0
+  1159  007BF8  6E4A               	movwf	_ledlength+2,c
+  1160  007BFA  0E00               	movlw	0
+  1161  007BFC  6E4B               	movwf	_ledlength+3,c
+  1162                           
+  1163                           ;hehe.c: 138: lednum=1;
+  1164  007BFE  0E00               	movlw	0
+  1165  007C00  6E4F               	movwf	_lednum+1,c
+  1166  007C02  0E01               	movlw	1
+  1167  007C04  6E4E               	movwf	_lednum,c
+  1168                           
+  1169                           ;hehe.c: 139: lednum_24= lednum*24;
+  1170  007C06  C04E  F001         	movff	_lednum,___wmul@multiplier
+  1171  007C0A  C04F  F002         	movff	_lednum+1,___wmul@multiplier+1
+  1172  007C0E  0E00               	movlw	0
+  1173  007C10  6E04               	movwf	___wmul@multiplicand+1,c
+  1174  007C12  0E18               	movlw	24
+  1175  007C14  6E03               	movwf	___wmul@multiplicand,c
+  1176  007C16  EC88  F03D         	call	___wmul	;wreg free
+  1177  007C1A  C001  F044         	movff	?___wmul,_lednum_24
+  1178  007C1E  C002  F045         	movff	?___wmul+1,_lednum_24+1
+  1179  007C22  0E00               	movlw	0
+  1180  007C24  BE45               	btfsc	_lednum_24+1,7,c
+  1181  007C26  0EFF               	movlw	-1
+  1182  007C28  6E46               	movwf	_lednum_24+2,c
+  1183  007C2A  6E47               	movwf	_lednum_24+3,c
+  1184                           
+  1185                           ;hehe.c: 140: ledmax=3;
+  1186  007C2C  0E00               	movlw	0
+  1187  007C2E  6E4D               	movwf	_ledmax+1,c
+  1188  007C30  0E03               	movlw	3
+  1189  007C32  6E4C               	movwf	_ledmax,c
+  1190                           
+  1191                           ;hehe.c: 142: led.r = 100;
+  1192  007C34  0E64               	movlw	100
+  1193  007C36  6E57               	movwf	_led,c
+  1194                           
+  1195                           ;hehe.c: 143: led.g = 100;
+  1196  007C38  0E64               	movlw	100
+  1197  007C3A  6E59               	movwf	_led+2,c
+  1198                           
+  1199                           ;hehe.c: 144: led.b = 100;
+  1200  007C3C  0E64               	movlw	100
+  1201  007C3E  6E58               	movwf	_led+1,c
+  1202                           
+  1203                           ;hehe.c: 146: isFlow=0;
+  1204  007C40  0E00               	movlw	0
+  1205  007C42  6E5B               	movwf	_isFlow+1,c
+  1206  007C44  0E00               	movlw	0
+  1207  007C46  6E5A               	movwf	_isFlow,c
+  1208                           
+  1209                           ;hehe.c: 148: TRISDbits.RD0 = 0;
+  1210  007C48  9095               	bcf	3989,0,c	;volatile
+  1211  007C4A  0012               	return		;funcret
+  1212  007C4C                     __end_of_init:
+  1213                           	opt stack 0
+  1214                           intcon	equ	0xFF2
+  1215                           postinc0	equ	0xFEE
+  1216                           wreg	equ	0xFE8
+  1217                           status	equ	0xFD8
+  1218                           
+  1219 ;; *************** function ___wmul *****************
+  1220 ;; Defined at:
+  1221 ;;		line 15 in file "C:\Program Files (x86)\Microchip\xc8\v1.44\sources\common\Umul16.c"
+  1222 ;; Parameters:    Size  Location     Type
+  1223 ;;  multiplier      2    0[COMRAM] unsigned int 
+  1224 ;;  multiplicand    2    2[COMRAM] unsigned int 
+  1225 ;; Auto vars:     Size  Location     Type
+  1226 ;;  product         2    4[COMRAM] unsigned int 
+  1227 ;; Return value:  Size  Location     Type
+  1228 ;;                  2    0[COMRAM] unsigned int 
+  1229 ;; Registers used:
+  1230 ;;		wreg, status,2, status,0, prodl, prodh
+  1231 ;; Tracked objects:
+  1232 ;;		On entry : 0/0
+  1233 ;;		On exit  : 0/0
+  1234 ;;		Unchanged: 0/0
+  1235 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+  1236 ;;      Params:         4       0       0       0       0       0       0
+  1237 ;;      Locals:         2       0       0       0       0       0       0
+  1238 ;;      Temps:          0       0       0       0       0       0       0
+  1239 ;;      Totals:         6       0       0       0       0       0       0
+  1240 ;;Total ram usage:        6 bytes
+  1241 ;; Hardware stack levels used:    1
+  1242 ;; This function calls:
+  1243 ;;		Nothing
+  1244 ;; This function is called by:
+  1245 ;;		_led_send
+  1246 ;;		_init
+  1247 ;;		_main
+  1248 ;; This function uses a non-reentrant model
+  1249 ;;
+  1250                           
+  1251                           	psect	text4
+  1252  007B10                     __ptext4:
+  1253                           	opt stack 0
+  1254  007B10                     ___wmul:
+  1255                           	opt stack 29
+  1256                           
+  1257                           ;incstack = 0
+  1258  007B10  5001               	movf	___wmul@multiplier,w,c
+  1259  007B12  0203               	mulwf	___wmul@multiplicand,c
+  1260  007B14  CFF3 F005          	movff	prodl,___wmul@product
+  1261  007B18  CFF4 F006          	movff	prodh,___wmul@product+1
+  1262  007B1C  5001               	movf	___wmul@multiplier,w,c
+  1263  007B1E  0204               	mulwf	___wmul@multiplicand+1,c
+  1264  007B20  50F3               	movf	prodl,w,c
+  1265  007B22  2606               	addwf	___wmul@product+1,f,c
+  1266  007B24  5002               	movf	___wmul@multiplier+1,w,c
+  1267  007B26  0203               	mulwf	___wmul@multiplicand,c
+  1268  007B28  50F3               	movf	prodl,w,c
+  1269  007B2A  2606               	addwf	___wmul@product+1,f,c
+  1270  007B2C  C005  F001         	movff	___wmul@product,?___wmul
+  1271  007B30  C006  F002         	movff	___wmul@product+1,?___wmul+1
+  1272  007B34  0012               	return	
+  1273  007B36                     __end_of___wmul:
+  1274                           	opt stack 0
+  1275                           prodh	equ	0xFF4
+  1276                           prodl	equ	0xFF3
+  1277                           intcon	equ	0xFF2
+  1278                           postinc0	equ	0xFEE
+  1279                           wreg	equ	0xFE8
+  1280                           status	equ	0xFD8
+  1281                           
+  1282 ;; *************** function _bitflip *****************
+  1283 ;; Defined at:
+  1284 ;;		line 124 in file "hehe.c"
+  1285 ;; Parameters:    Size  Location     Type
+  1286 ;;  b               1    wreg     unsigned char 
+  1287 ;; Auto vars:     Size  Location     Type
+  1288 ;;  b               1    6[COMRAM] unsigned char 
+  1289 ;; Return value:  Size  Location     Type
+  1290 ;;                  4    0[COMRAM] unsigned long 
+  1291 ;; Registers used:
+  1292 ;;		wreg, status,2, status,0
+  1293 ;; Tracked objects:
+  1294 ;;		On entry : 0/0
+  1295 ;;		On exit  : 0/0
+  1296 ;;		Unchanged: 0/0
+  1297 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+  1298 ;;      Params:         4       0       0       0       0       0       0
+  1299 ;;      Locals:         1       0       0       0       0       0       0
+  1300 ;;      Temps:          2       0       0       0       0       0       0
+  1301 ;;      Totals:         7       0       0       0       0       0       0
+  1302 ;;Total ram usage:        7 bytes
+  1303 ;; Hardware stack levels used:    1
+  1304 ;; This function calls:
+  1305 ;;		Nothing
+  1306 ;; This function is called by:
+  1307 ;;		_main
+  1308 ;; This function uses a non-reentrant model
+  1309 ;;
+  1310                           
+  1311                           	psect	text5
+  1312  007B8C                     __ptext5:
+  1313                           	opt stack 0
+  1314  007B8C                     _bitflip:
+  1315                           	opt stack 30
+  1316                           
+  1317                           ;incstack = 0
+  1318                           ;bitflip@b stored from wreg
+  1319  007B8C  6E07               	movwf	bitflip@b,c
+  1320                           
+  1321                           ;hehe.c: 125: b = (b & 0xF0) >> 4 | (b & 0x0F) << 4;
+  1322  007B8E  C007  F005         	movff	bitflip@b,??_bitflip
+  1323  007B92  0E0F               	movlw	15
+  1324  007B94  1605               	andwf	??_bitflip,f,c
+  1325  007B96  3A05               	swapf	??_bitflip,f,c
+  1326  007B98  0EF0               	movlw	240
+  1327  007B9A  1605               	andwf	??_bitflip,f,c
+  1328  007B9C  3807               	swapf	bitflip@b,w,c
+  1329  007B9E  0B0F               	andlw	15
+  1330  007BA0  0B0F               	andlw	15
+  1331  007BA2  1005               	iorwf	??_bitflip,w,c
+  1332  007BA4  6E07               	movwf	bitflip@b,c
+  1333                           
+  1334                           ;hehe.c: 126: b = (b & 0xCC) >> 2 | (b & 0x33) << 2;
+  1335  007BA6  C007  F005         	movff	bitflip@b,??_bitflip
+  1336  007BAA  0E33               	movlw	51
+  1337  007BAC  1605               	andwf	??_bitflip,f,c
+  1338  007BAE  90D8               	bcf	status,0,c
+  1339  007BB0  3605               	rlcf	??_bitflip,f,c
+  1340  007BB2  90D8               	bcf	status,0,c
+  1341  007BB4  3605               	rlcf	??_bitflip,f,c
+  1342  007BB6  4007               	rrncf	bitflip@b,w,c
+  1343  007BB8  42E8               	rrncf	wreg,f,c
+  1344  007BBA  0B3F               	andlw	63
+  1345  007BBC  0B33               	andlw	51
+  1346  007BBE  1005               	iorwf	??_bitflip,w,c
+  1347  007BC0  6E07               	movwf	bitflip@b,c
+  1348                           
+  1349                           ;hehe.c: 127: b = (b & 0xAA) >> 1 | (b & 0x55) << 1;
+  1350  007BC2  C007  F005         	movff	bitflip@b,??_bitflip
+  1351  007BC6  0E55               	movlw	85
+  1352  007BC8  1605               	andwf	??_bitflip,f,c
+  1353  007BCA  90D8               	bcf	status,0,c
+  1354  007BCC  3405               	rlcf	??_bitflip,w,c
+  1355  007BCE  6E06               	movwf	(??_bitflip+1)& (0+255),c
+  1356  007BD0  90D8               	bcf	status,0,c
+  1357  007BD2  3007               	rrcf	bitflip@b,w,c
+  1358  007BD4  0B55               	andlw	85
+  1359  007BD6  1006               	iorwf	??_bitflip+1,w,c
+  1360  007BD8  6E07               	movwf	bitflip@b,c
+  1361                           
+  1362                           ;hehe.c: 128: return (unsigned char)b;
+  1363  007BDA  5007               	movf	bitflip@b,w,c
+  1364  007BDC  6E01               	movwf	?_bitflip,c
+  1365  007BDE  6A02               	clrf	?_bitflip+1,c
+  1366  007BE0  6A03               	clrf	?_bitflip+2,c
+  1367  007BE2  6A04               	clrf	?_bitflip+3,c
+  1368  007BE4  0012               	return	
+  1369  007BE6                     __end_of_bitflip:
+  1370                           	opt stack 0
+  1371  0000                     prodh	equ	0xFF4
+  1372                           prodl	equ	0xFF3
+  1373                           intcon	equ	0xFF2
+  1374                           postinc0	equ	0xFEE
+  1375                           wreg	equ	0xFE8
+  1376                           status	equ	0xFD8
+  1377                           prodh	equ	0xFF4
+  1378                           prodl	equ	0xFF3
+  1379                           intcon	equ	0xFF2
+  1380                           postinc0	equ	0xFEE
+  1381                           wreg	equ	0xFE8
+  1382                           status	equ	0xFD8
+  1383                           
+  1384                           	psect	rparam
+  1385  0000                     prodh	equ	0xFF4
+  1386                           prodl	equ	0xFF3
+  1387                           intcon	equ	0xFF2
+  1388                           postinc0	equ	0xFEE
+  1389                           wreg	equ	0xFE8
+  1390                           status	equ	0xFD8
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         11
+    Persistent  15
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM          127     67      93
+    BANK0           128      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMRAM
+
+    _main->_led_send
+    _led_send->___lmul
+    _init->___wmul
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                19    19      0    3307
+                                             48 COMRAM    19    19      0
+                             ___wmul
+                            _bitflip
+                               _init
+                           _led_send
+ ---------------------------------------------------------------------------------
+ (1) _led_send                                            36    34      2    1520
+                                             12 COMRAM    36    34      2
+                             ___lmul
+                             ___wmul
+ ---------------------------------------------------------------------------------
+ (2) ___lmul                                              12     4      8     370
+                                              0 COMRAM    12     4      8
+ ---------------------------------------------------------------------------------
+ (1) _init                                                 0     0      0     767
+                             ___wmul
+ ---------------------------------------------------------------------------------
+ (2) ___wmul                                               6     2      4     767
+                                              0 COMRAM     6     2      4
+ ---------------------------------------------------------------------------------
+ (1) _bitflip                                              7     3      4     157
+                                              0 COMRAM     7     3      4
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   ___wmul
+   _bitflip
+   _init
+     ___wmul
+   _led_send
+     ___lmul
+     ___wmul
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM             5FF      0       0      17        0.0%
+EEDATA             100      0       0       0        0.0%
+BITBANK5           100      0       0      16        0.0%
+BANK5              100      0       0      14        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK0            80      0       0       4        0.0%
+BANK0               80      0       0       5        0.0%
+BITCOMRAM           7F      0       0       0        0.0%
+COMRAM              7F     43      5D       1       73.2%
+BITSFR               0      0       0     200        0.0%
+SFR                  0      0       0     200        0.0%
+STACK                0      0       0       2        0.0%
+NULL                 0      0       0       0        0.0%
+ABS                  0      0      5D      15        0.0%
+DATA                 0      0      5D       3        0.0%
+CODE                 0      0       0       0        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V1.44 build -154322312 
+Symbol Table                                                                                   Sat Dec 16 23:33:47 2017
+
+                     l40 7E84                       l50 7F30                       l43 7EE0  
+                     l52 7F44                       l44 7EBE                       l53 7F60  
+                     l37 7E9E                       l46 7F92                       l54 7F76  
+                     l38 7E7C                       l70 7C76                       l47 7F0E  
+                     l39 7E8A                       l56 7FE2                       l48 7F22  
+                     l80 7DAA                       l72 7C7A                       l57 7FC0  
+                     l81 7DA4                       l74 7D26                       l75 7D3E  
+                     l76 7D76                       l85 7DCE                       l77 7D8C  
+                     l78 7DBE                       l79 7D9C      ___wmul@multiplicand 0003  
+                    l101 7B46                      l102 7B5A                      l881 7E84  
+                    l981 7D9C                      l879 7E7C                      l983 7DA4  
+                    _GIE 007F97                      u220 7E98                      u230 7EAC  
+                    u340 7D4C                      u360 7DB8                      u370 7DCC  
+           __CFG_CPD$OFF 000000                      _led 0057                      wreg 000FE8  
+           __CFG_LVP$OFF 000000             __CFG_WDT$OFF 000000                     _flag 005C  
+                   _main 7C4C                     _init 7BE6                     _tmp1 0052  
+                   _tmp2 0051                     _tmp3 0050                     _temp 0053  
+          __CFG_BOREN$ON 000000                     prodh 000FF4                     prodl 000FF3  
+                   start 0000             ___param_bank 000000              led_send@buf 002F  
+            led_send@val 002B                    ?_main 0001                    ?_init 0001  
+          __CFG_PWRT$OFF 000000      ___lmul@multiplicand 0005          __end_of_bitflip 7BE6  
+                  main@k 003E                    main@l 0040                    status 000FD8  
+        led_send@back_24 0017          __initialization 7AFE             __end_of_main 7DD4  
+           __end_of_init 7C4C                   ??_main 0031                   ??_init 0007  
+          __activetblptr 000000         __end_of_led_send 8000                   ___lmul 7B36  
+                 ___wmul 7B10                   _isFlow 005A                   _ledmax 004C  
+                 _lednum 004E                   clear_0 7B04                ??_bitflip 0005  
+             __accesstop 0080  __end_of__initialization 7B0A            ___rparam_used 000001  
+         __pcstackCOMRAM 0001            led_send@i_217 001F            led_send@i_218 0023  
+          led_send@front 000D         led_send@front_24 0013               __pnvCOMRAM 0044  
+                ?___lmul 0001                  ?___wmul 0001           ___lmul@product 0009  
+              ?_led_send 000D                  __Hparam 0000                  __Lparam 0000  
+        __size_of___lmul 0056          __size_of___wmul 0026                  __pcinit 7AFE  
+                __ramtop 0600                  _bitflip 7B8C                  __ptext0 7C4C  
+                __ptext1 7DD4                  __ptext2 7B36                  __ptext3 7BE6  
+                __ptext4 7B10                  __ptext5 7B8C     end_of_initialization 7B0A  
+             ??_led_send 000F                  postinc0 000FEE                _PORTDbits 000F83  
+              _TRISDbits 000F95           __end_of___lmul 7B8C           __end_of___wmul 7B36  
+    start_initialization 7AFE         __CFG_OSC$INTIO67 000000                 ??___lmul 0009  
+               ??___wmul 0005              __pbssCOMRAM 0053        __size_of_led_send 022C  
+               ?_bitflip 0001                _ledlength 0048                _lednum_24 0044  
+         ___wmul@product 0005        ___wmul@multiplier 0001                main@front 0042  
+              led_send@i 001B                led_send@k 0027                led_send@l 0029  
+      ___lmul@multiplier 0001                 __Hrparam 0000                 __Lrparam 0000  
+       __size_of_bitflip 005A                 _led_send 7DD4            __size_of_main 0188  
+          __size_of_init 0066                 bitflip@b 0007              _OSCTUNEbits 000F9B  
+             _OSCCONbits 000FD3  
